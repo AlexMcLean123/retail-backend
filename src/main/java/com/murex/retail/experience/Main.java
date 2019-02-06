@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 public class Main {
-   static final Logger logger = LogManager.getLogger(Main.class);
+    static final Logger logger = LogManager.getLogger(Main.class);
 
    public static void main(String[] args) throws IOException {
       final String CSVFile = "src/main/resources/Inventory.csv";
@@ -23,9 +23,9 @@ public class Main {
       functions.averagePrice(componentList);
       functions.averagePriceOfCPU(componentList);
       functions.printCheapest(componentList);
-      functions.mostExpensive();
-      functions.componentQuantity();
-      functions.componentBrandCategory();
+      functions.mostExpensive(componentList);
+      functions.componentQuantity(componentList);
+      functions.componentBrandCategory(componentList);
    }
 
    public static List<ComputerComponent> readInBuildComponent(String input) throws IOException {
@@ -55,7 +55,7 @@ public class Main {
                        .quantity(Integer.parseInt(array[14].trim()));
                ComputerComponent newComp = builder.build();
                componentList.add(newComp);
-               logger.info(newComp.toString());
+               //logger.info(newComp.toString());
             }
 
          }

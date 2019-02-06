@@ -153,7 +153,7 @@ public class ComputerComponent {
     public String getInterf(){
         return interf;
     }
-    public String setSize(){
+    public String getSize(){
         return size;
     }
     public int getPrice(){

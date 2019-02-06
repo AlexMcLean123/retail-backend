@@ -4,12 +4,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class MainTest {
     private static final Path filePath = Paths.get("src/main/resources/Inventory.csv");
+
     //do all the tests within one test
     @Test
     public void testProgramOutput() throws IOException {
@@ -29,6 +29,4 @@ class MainTest {
                 "[INFO ] 2019-02-05 17:22:36.875 [main] Main - hellobdf30ee6-665d-484c-af41-917bf9dc6d15\t|\tCPU\t|\tAtom Processor C3830\t|\tIntel\t|\tAtom\t|\t12\t|\t1.90 GHz\t|\tN/A\t|\tN/A\t|\tN/A\t|N/A\t|\tN/A\t|\tN/A\t|\t60\t|\t10"
         assertEquals(functions.sortList(componentList), s1);
     }
-
-
 }

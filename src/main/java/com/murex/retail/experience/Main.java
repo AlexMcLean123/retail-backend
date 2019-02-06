@@ -59,9 +59,7 @@ public class Main {
             }
 
          }
-      }
-      catch(Exception e)
-      {
+      } catch (Exception e) {
          logger.error(e);
          throw e;
 
@@ -69,3 +67,4 @@ public class Main {
       return componentList;
    }
 }
+

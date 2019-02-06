@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class MainTest {
     private static final Path filePath = Paths.get("src/main/resources/Inventory.csv");
 

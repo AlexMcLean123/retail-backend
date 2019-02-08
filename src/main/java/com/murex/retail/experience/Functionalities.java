@@ -32,11 +32,8 @@ public class Functionalities {
         return averagePrice;
     }
 
-    public double averagePriceOfCPU(List<ComputerComponent> listOfComponents) {
-        double CPUAveragePrice = listOfComponents.stream()
-                .filter(x -> "CPU".equals(x.getCategory())).mapToDouble(ComputerComponent::getPrice)
-                .average()
-                .orElse(0);
+    public double averagePriceOfCPU() {
+        double CPUAveragePrice = categoryMap.get("CPU").stream().mapToDouble(ComputerComponent::getPrice).average().orElse(0);
         logger.info("Average price of a CPU: " + CPUAveragePrice);
         return CPUAveragePrice;
     }

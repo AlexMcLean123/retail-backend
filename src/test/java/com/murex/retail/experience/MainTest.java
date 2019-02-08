@@ -24,7 +24,7 @@ class MainTest {
         Functionalities functions = new Functionalities(allComponents);
         testItemsSorted(functions, allComponents);
         testAveragePrice(functions, allComponents);
-        testAveragePriceOfACPU(functions, allComponents);
+        testAveragePriceOfACPU(functions);
         testCheapestComponent(functions, allComponents);
         testMostExpensiveComponentsInCat(functions);
         testComponentsByCategory(functions);
@@ -41,8 +41,8 @@ class MainTest {
         assertEquals(145.83, function.averagePrice(com));
     }
 
-    public void testAveragePriceOfACPU(Functionalities function, List<ComputerComponent> com) {
-        assertEquals(92.43243243243244, function.averagePriceOfCPU(com));
+    public void testAveragePriceOfACPU(Functionalities function) {
+        assertEquals(92.43243243243244, function.averagePriceOfCPU());
     }
 
     public void testCheapestComponent(Functionalities function, List<ComputerComponent> com) {

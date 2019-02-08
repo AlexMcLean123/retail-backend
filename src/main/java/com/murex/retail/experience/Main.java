@@ -17,7 +17,7 @@ public class Main {
         Functionalities functions = new Functionalities(componentList);
         functions.sortList(componentList);
         functions.averagePrice(componentList);
-        functions.averagePriceOfCPU(componentList);
+        functions.averagePriceOfCPU();
         functions.getCheapest(componentList);
         functions.getMostExpensiveByCategory();
         functions.componentQuantityByCategory();

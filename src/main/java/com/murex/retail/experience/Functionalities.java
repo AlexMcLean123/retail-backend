@@ -11,29 +11,29 @@ public class Functionalities {
     private Map<String, Map<String, List<ComputerComponent>>> categoryBrandMap = new HashMap<>();
 
 
-    public Functionalities(List<ComputerComponent> list) {
-        categoryBrandMap = list.stream().collect(Collectors.groupingBy(ComputerComponent::getCategory, Collectors.groupingBy(ComputerComponent::getBrand)));
-        categoryMap = list.stream().collect(Collectors.groupingBy(ComputerComponent::getCategory));
+    public Functionalities(List<ComputerComponent> listOfComponents) {
+        categoryBrandMap = listOfComponents.stream().collect(Collectors.groupingBy(ComputerComponent::getCategory, Collectors.groupingBy(ComputerComponent::getBrand)));
+        categoryMap = listOfComponents.stream().collect(Collectors.groupingBy(ComputerComponent::getCategory));
     }
 
-    public List<ComputerComponent> sortList(List<ComputerComponent> list) {
-        return list.stream().sorted(Comparator.comparing(ComputerComponent::getCategory)
+    public List<ComputerComponent> sortList(List<ComputerComponent> listOfComponents) {
+        return listOfComponents.stream().sorted(Comparator.comparing(ComputerComponent::getCategory)
                 .thenComparing(ComputerComponent::getName)
                 .thenComparing(ComputerComponent::getBrand)).limit(10).peek(b -> logger.info(b.toString()))
                 .collect(Collectors.toList());
     }
 
-    public double averagePrice(List<ComputerComponent> listIn) {
+    public double averagePrice(List<ComputerComponent> listOfComponentsIn) {
         double averagePrice =
-                listIn.stream()
+                listOfComponentsIn.stream()
                         .mapToDouble(ComputerComponent::getPrice)
                         .average().orElse(0);
         logger.info("Average price of a component: " + averagePrice);
         return averagePrice;
     }
 
-    public double averagePriceOfCPU(List<ComputerComponent> list) {
-        double CPUAveragePrice = list.stream()
+    public double averagePriceOfCPU(List<ComputerComponent> listOfComponents) {
+        double CPUAveragePrice = listOfComponents.stream()
                 .filter(x -> "CPU".equals(x.getCategory())).mapToDouble(ComputerComponent::getPrice)
                 .average()
                 .orElse(0);
@@ -41,8 +41,8 @@ public class Functionalities {
         return CPUAveragePrice;
     }
 
-    public ComputerComponent printCheapest(List<ComputerComponent> list) {
-        ComputerComponent cheapestComponent = (list.stream()
+    public ComputerComponent printCheapest(List<ComputerComponent> listOfComponents) {
+        ComputerComponent cheapestComponent = (listOfComponents.stream()
                 .min(Comparator.comparing(ComputerComponent::getPrice))
                 .get()
         );

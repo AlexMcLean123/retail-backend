@@ -11,23 +11,24 @@ public class Main {
     static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
-        readIn reader = new readIn();
+
         final String CSVFile = "src/main/resources/Inventory.csv";
-        List<String> list = reader.readIn(CSVFile);
-        List<ComputerComponent> componentList = buildComponent(list);
+        List<ComputerComponent> componentList = buildComponent(CSVFile);
         Functionalities functions = new Functionalities(componentList);
         functions.sortList(componentList);
         functions.averagePrice(componentList);
         functions.averagePriceOfCPU(componentList);
-        functions.printCheapest(componentList);
-        functions.mostExpensive();
-        functions.componentQuantity();
-        functions.componentBrandCategory();
+        functions.getCheapest(componentList);
+        functions.getMostExpensiveByCategory();
+        functions.componentQuantityByCategory();
+        functions.componentQuantityByBrandCategory();
     }
 
-    public static List<ComputerComponent> buildComponent(List<String> inputList) {
+    public static List<ComputerComponent> buildComponent(String input) throws IOException {
+        readIn reader = new readIn();
+        List<String> listOfComponents = reader.readIn(input);
         List<ComputerComponent> componentList = new ArrayList<>();
-        for (String s : inputList) {
+        for (String s : listOfComponents) {
             String[] array = s.split(",");
             ComputerComponent.ComputerComponentBuilder builder = new ComputerComponent.ComputerComponentBuilder();
             builder.id(array[0].trim())

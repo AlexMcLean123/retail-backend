@@ -20,9 +20,7 @@ class MainTest {
 
     @Test
     public void testProgramOutput() throws IOException {
-        readIn reader = new readIn();
-        List<String> componentList = reader.readIn(filePath);
-        List<ComputerComponent> allComponents = Main.buildComponent(componentList);
+        List<ComputerComponent> allComponents = Main.buildComponent(filePath);
         Functionalities functions = new Functionalities(allComponents);
         testItemsSorted(functions, allComponents);
         testAveragePrice(functions, allComponents);
@@ -35,14 +33,8 @@ class MainTest {
 
     public void testItemsSorted(Functionalities function, List<ComputerComponent> com) {
         List<ComputerComponent> sortedInventory = function.sortList(com);
-        assertEquals("CPU", sortedInventory.get(0).getCategory());
-        assertEquals("Atom Processor C3308", sortedInventory.get(0).getName());
-        assertEquals("Intel", sortedInventory.get(0).getBrand());
-
-        assertEquals("CPU", sortedInventory.get(9).getCategory());
-        assertEquals("Atom Processor C3830", sortedInventory.get(9).getName());
-        assertEquals("Intel", sortedInventory.get(9).getBrand());
-
+        assertEquals("46100e71-689d-4f37-a94a-9cba59919d8f", sortedInventory.get(0).getId());
+        assertEquals("bdf30ee6-665d-484c-af41-917bf9dc6d15", sortedInventory.get(9).getId());
     }
 
     public void testAveragePrice(Functionalities function, List<ComputerComponent> com) {
@@ -54,7 +46,7 @@ class MainTest {
     }
 
     public void testCheapestComponent(Functionalities function, List<ComputerComponent> com) {
-        assertEquals(4, function.printCheapest(com).getPrice());
+        assertEquals(4, function.getCheapest(com).getPrice());
     }
 
     public void testMostExpensiveComponentsInCat(Functionalities function) {
@@ -66,12 +58,12 @@ class MainTest {
                 "96fc477c-0c66-4400-9217-94817072429f",
                 "ea2b9fd9-d908-4c78-84f0-201483cd91ff"};
         for (int i = 0; i < arrayOfId.length; i++) {
-            assertEquals(arrayOfId[i], function.mostExpensive().get(i).getId());
+            assertEquals(arrayOfId[i], function.getMostExpensiveByCategory().get(i).getId());
         }
     }
 
     public void testComponentsByCategory(Functionalities function) {
-        Map<String, Integer> componentsByCat = function.componentQuantity();
+        Map<String, Integer> componentsByCat = function.componentQuantityByCategory();
         assertEquals(82, componentsByCat.get("Storage").intValue());
         assertEquals(192, componentsByCat.get("Monitor").intValue());
         assertEquals(141, componentsByCat.get("Memory").intValue());
@@ -82,7 +74,7 @@ class MainTest {
     }
 
     public void testComponentsByBrandCategory(Functionalities function) {
-        Map<String, Integer> brandCategory = function.componentBrandCategory();
+        Map<String, Integer> brandCategory = function.componentQuantityByBrandCategory();
         assertEquals(90, brandCategory.get("Keyboard logitech").intValue());
         assertEquals(210, brandCategory.get("CPU AMD").intValue());
         assertEquals(153, brandCategory.get("Keyboard Microsoft").intValue());
@@ -108,29 +100,5 @@ class MainTest {
         assertEquals(10, brandCategory.get("Storage Samsung").intValue());
         assertEquals(89, brandCategory.get("Memory Kingston").intValue());
 
-    }
-
-    @Test
-    public void testMain() throws IOException {
-        String[] args = null;
-        Main.main(args);
-    }
-
-    @Test
-    public void testGetters() {
-        ComputerComponent.ComputerComponentBuilder builder = new ComputerComponent.ComputerComponentBuilder();
-        builder.productLine("This is the product line")
-                .coreNum("This is the number of cores")
-                .graphicSpeed("This is the graphics speed")
-                .processorSpeed("this is the processor speed")
-                .dimension("This is the dimension")
-                .resolution("This is the resolution")
-                .color("This is the color")
-                .interfaceType("this is the interface")
-                .size("And this is the size");
-        ComputerComponent newComp = builder.build();
-        String expected = "This is the product lineThis is the number of coresThis is the graphics speedthis is the processor speedThis is the dimensionThis is the resolutionThis is the colorthis is the interfaceAnd this is the size";
-        String actual = newComp.getProductLine() + newComp.getCoreNum() + newComp.getGraphicSpeed() + newComp.getProcessorSpeed()+ newComp.getDimension() + newComp.getResolution() + newComp.getColor() + newComp.getInterfaceType() + newComp.getSize();
-        assertEquals(expected, actual);
     }
 }

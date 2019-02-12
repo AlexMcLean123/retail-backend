@@ -7,8 +7,8 @@ import static com.murex.retail.experience.Main.logger;
 
 
 public class Functionalities {
-    private Map<String, List<ComputerComponent>> categoryMap = new HashMap<>();
-    private Map<String, Map<String, List<ComputerComponent>>> categoryBrandMap = new HashMap<>();
+    private Map<String, List<ComputerComponent>> categoryMap;
+    private Map<String, Map<String, List<ComputerComponent>>> categoryBrandMap;
 
 
     public Functionalities(List<ComputerComponent> listOfComponents) {
@@ -53,7 +53,7 @@ public class Functionalities {
         for (ComputerComponent x : quantities) {
             logger.info("Most Expensive: " + x);
         }
-        quantities.forEach(k->logger.info("Most Expensive: " + k ));
+        quantities.forEach(k -> logger.info("Most Expensive: " + k));
         return quantities;
     }
 
@@ -62,14 +62,14 @@ public class Functionalities {
         categoryMap.forEach((key, value) ->
                 quantityOfItems.put(key, value.stream().mapToInt(ComputerComponent::getQuantity).sum()));
 
-        quantityOfItems.forEach((k,v)-> logger.info("Category: " + k + " Quantity: " + v));
+        quantityOfItems.forEach((k, v) -> logger.info("Category: " + k + " Quantity: " + v));
         return quantityOfItems;
     }
 
     public Map<String, Integer> componentQuantityByBrandCategory() {
         Map<String, Integer> brandCategory = new HashMap<>();
         categoryBrandMap.forEach((category, brandMap) -> brandMap.forEach((brand, components) -> brandCategory.put(category + " " + brand, components.stream().mapToInt(ComputerComponent::getQuantity).sum())));
-        brandCategory.forEach((k,v)->
+        brandCategory.forEach((k, v) ->
                 logger.info("Category & Brand : " + k + "\t|\t" + "Quantity: " + v));
         return brandCategory;
     }

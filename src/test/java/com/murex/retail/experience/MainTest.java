@@ -13,14 +13,15 @@ class MainTest {
     public void testException() {
         readIn reader = new readIn();
         Throwable exception = assertThrows(IOException.class, () -> {
-            List<String> testFile = reader.readIn("notafile");
+            List<ComputerComponent> testFile = reader.readIn("notafile");
         });
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
 
     @Test
     public void testProgramOutput() throws IOException {
-        List<ComputerComponent> allComponents = Main.buildComponent(filePath);
+        readIn reader = new readIn();
+        List<ComputerComponent> allComponents = reader.readIn(filePath);
         Functionalities functions = new Functionalities(allComponents);
         testItemsSorted(functions, allComponents);
         testAveragePrice(functions, allComponents);

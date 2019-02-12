@@ -10,18 +10,20 @@ class MainTest {
     static final String filePath = "src/main/resources/Inventory.csv";
 
     @Test
-    public void testException() {
+     void testException() {
         readIn reader = new readIn();
         Throwable exception = assertThrows(IOException.class, () -> {
-            List<ComputerComponent> testFile = reader.readIn("notafile");
+            List<String> testFile = reader.readIn("notafile");
         });
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
 
     @Test
-    public void testProgramOutput() throws IOException {
+     void testProgramOutput() throws IOException, IllegalAccessException{
         readIn reader = new readIn();
-        List<ComputerComponent> allComponents = reader.readIn(filePath);
+        List<String> listOfInventory = reader.readIn(filePath);
+        List<ComputerComponent> allComponents = reader.setComponent(listOfInventory);
+
         Functionalities functions = new Functionalities(allComponents);
         testItemsSorted(functions, allComponents);
         testAveragePrice(functions, allComponents);
@@ -32,25 +34,25 @@ class MainTest {
         testComponentsByBrandCategory(functions);
     }
 
-    public void testItemsSorted(Functionalities function, List<ComputerComponent> com) {
+    private void testItemsSorted(Functionalities function, List<ComputerComponent> com) {
         List<ComputerComponent> sortedInventory = function.sortList(com);
         assertEquals("46100e71-689d-4f37-a94a-9cba59919d8f", sortedInventory.get(0).getId());
         assertEquals("bdf30ee6-665d-484c-af41-917bf9dc6d15", sortedInventory.get(9).getId());
     }
 
-    public void testAveragePrice(Functionalities function, List<ComputerComponent> com) {
+    private void testAveragePrice(Functionalities function, List<ComputerComponent> com) {
         assertEquals(145.83, function.averagePrice(com));
     }
 
-    public void testAveragePriceOfACPU(Functionalities function) {
+    private void testAveragePriceOfACPU(Functionalities function) {
         assertEquals(92.43243243243244, function.averagePriceOfCPU());
     }
 
-    public void testCheapestComponent(Functionalities function, List<ComputerComponent> com) {
+    private void testCheapestComponent(Functionalities function, List<ComputerComponent> com) {
         assertEquals(4, function.getCheapest(com).getPrice());
     }
 
-    public void testMostExpensiveComponentsInCat(Functionalities function) {
+    private void testMostExpensiveComponentsInCat(Functionalities function) {
         String[] arrayOfId = {"375cfcec-9655-4c68-9afc-8c706685c883",
                 "79b536c7-6a19-4099-96ec-5cdcb33b9548",
                 "8611b32f-5efc-4452-9bfe-0f0776c63195",
@@ -63,7 +65,7 @@ class MainTest {
         }
     }
 
-    public void testComponentsByCategory(Functionalities function) {
+    private void testComponentsByCategory(Functionalities function) {
         Map<String, Integer> componentsByCat = function.componentQuantityByCategory();
         assertEquals(82, componentsByCat.get("Storage").intValue());
         assertEquals(192, componentsByCat.get("Monitor").intValue());
@@ -74,7 +76,7 @@ class MainTest {
         assertEquals(55, componentsByCat.get("GPU").intValue());
     }
 
-    public void testComponentsByBrandCategory(Functionalities function) {
+    private void testComponentsByBrandCategory(Functionalities function) {
         Map<String, Integer> brandCategory = function.componentQuantityByBrandCategory();
         assertEquals(90, brandCategory.get("Keyboard logitech").intValue());
         assertEquals(210, brandCategory.get("CPU AMD").intValue());

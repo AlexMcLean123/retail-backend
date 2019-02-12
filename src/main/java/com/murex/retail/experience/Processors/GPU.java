@@ -1,4 +1,5 @@
-package com.murex.retail.experience.Processors;
+package com.murex.retail.experience.processors;
 
 public interface GPU {
+
 }

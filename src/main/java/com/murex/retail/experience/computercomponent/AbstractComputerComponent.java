@@ -1,6 +1,6 @@
-package com.murex.retail.experience;
+package com.murex.retail.experience.computercomponent;
 
-public abstract class abstractComputerComponent implements ComputerComponent {
+public abstract class AbstractComputerComponent implements ComputerComponent {
     public String id;
     public String category;
     public String name;
@@ -8,7 +8,7 @@ public abstract class abstractComputerComponent implements ComputerComponent {
     public int price;
     public int quantity;
 
-    public abstractComputerComponent(String id, String category, String name, String brand, int price, int quantity) {
+    public AbstractComputerComponent(String id, String category, String name, String brand, int price, int quantity) {
         this.id = id;
         this.category = category;
         this.name = name;

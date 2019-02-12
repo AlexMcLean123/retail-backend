@@ -1,8 +1,8 @@
-package com.murex.retail.experience.Storage;
+package com.murex.retail.experience.storage;
 
-import com.murex.retail.experience.abstractComputerComponent;
+import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
 
-public abstract class abstractStorage extends abstractComputerComponent {
+public abstract class abstractStorage extends AbstractComputerComponent {
     private String size;
     private String memoryInterface;
 

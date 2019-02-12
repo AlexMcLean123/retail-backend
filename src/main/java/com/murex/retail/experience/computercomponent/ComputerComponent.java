@@ -1,4 +1,4 @@
-package com.murex.retail.experience;
+package com.murex.retail.experience.computercomponent;
 
 public interface ComputerComponent {
 

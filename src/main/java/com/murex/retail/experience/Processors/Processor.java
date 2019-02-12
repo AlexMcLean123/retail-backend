@@ -1,4 +1,4 @@
-package com.murex.retail.experience.Processors;
+package com.murex.retail.experience.processors;
 
 public interface Processor {
     String getProuctline();
@@ -8,6 +8,5 @@ public interface Processor {
     String getProcessorSpeed();
 
     String getGraphicClockSpeed();
-
 
 }

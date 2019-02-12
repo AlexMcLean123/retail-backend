@@ -1,5 +1,7 @@
 package com.murex.retail.experience;
 
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+import com.murex.retail.experience.computercomponent.ComputerComponentFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,11 +30,11 @@ public class readIn {
         }
     }
 
-    public List<ComputerComponent> setComponent(List<String> componentString) throws IllegalAccessException{
+    public List<ComputerComponent> setComponent(List<String> componentString) {
         List<ComputerComponent> componentList = new ArrayList<>();
         for (String x : componentString) {
             String theLine[] = x.trim().split("\\s*,\\s*");
-            componentList.add(computerComponentFactory.getComponent(theLine));
+            componentList.add(ComputerComponentFactory.getComponent(theLine));
         }
         return componentList;
     }

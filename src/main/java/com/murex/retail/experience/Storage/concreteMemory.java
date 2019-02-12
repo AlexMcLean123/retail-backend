@@ -1,6 +1,4 @@
-package com.murex.retail.experience.Storage;
-
-import com.murex.retail.experience.Storage.abstractStorage;
+package com.murex.retail.experience.storage;
 
 public class concreteMemory extends abstractStorage implements Memory {
     public concreteMemory(String id, String category, String name, String brand, String size, String memoryInterface, int price, int quantity) {

@@ -1,4 +1,4 @@
-package com.murex.retail.experience.Storage;
+package com.murex.retail.experience.storage;
 
 public interface Memory {
 }

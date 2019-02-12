@@ -2,6 +2,8 @@ package com.murex.retail.experience;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import com.murex.retail.experience.computercomponent.ComputerComponent;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -23,8 +25,8 @@ class MainTest {
         readIn reader = new readIn();
         List<String> listOfInventory = reader.readIn(filePath);
         List<ComputerComponent> allComponents = reader.setComponent(listOfInventory);
-
         Functionalities functions = new Functionalities(allComponents);
+
         testItemsSorted(functions, allComponents);
         testAveragePrice(functions, allComponents);
         testAveragePriceOfACPU(functions);

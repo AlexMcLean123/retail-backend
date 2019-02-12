@@ -1,5 +1,7 @@
 package com.murex.retail.experience;
 
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -7,8 +9,8 @@ import static com.murex.retail.experience.readIn.logger;
 
 
 public class Functionalities {
-    private Map<String, List<ComputerComponent>> categoryMap = new HashMap<>();
-    private Map<String, Map<String, List<ComputerComponent>>> categoryBrandMap = new HashMap<>();
+    private Map<String, List<ComputerComponent>> categoryMap;
+    private Map<String, Map<String, List<ComputerComponent>>> categoryBrandMap;
 
 
     public Functionalities(List<ComputerComponent> listOfComponents) {

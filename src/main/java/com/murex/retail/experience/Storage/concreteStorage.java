@@ -1,6 +1,4 @@
-package com.murex.retail.experience.Storage;
-
-import com.murex.retail.experience.Storage.abstractStorage;
+package com.murex.retail.experience.storage;
 
 public class concreteStorage extends abstractStorage implements Storage {
 

@@ -5,7 +5,4 @@ public class DefaultMemory extends AbstractStorage implements Memory {
         super(id, category, name, brand, size, memoryInterface, price, quantity);
     }
 
-    public String toString(){
-        return super.toString();
-    }
 }

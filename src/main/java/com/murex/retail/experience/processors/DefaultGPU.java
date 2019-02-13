@@ -6,7 +6,5 @@ public class DefaultGPU extends AbstractProcessor implements GPU {
     }
 
 
-    public String toString() {
-        return super.toString();
-    }
+
 }

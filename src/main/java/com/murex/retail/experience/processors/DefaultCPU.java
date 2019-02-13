@@ -6,7 +6,5 @@ public class DefaultCPU extends AbstractProcessor implements CPU {
     }
 
 
-    public String toString() {
-        return super.toString();
-    }
+
 }

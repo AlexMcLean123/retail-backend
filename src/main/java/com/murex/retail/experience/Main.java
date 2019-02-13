@@ -8,9 +8,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
         final String CSVFile = "src/main/resources/Inventory.csv";
-        readIn reader = new readIn();
-        List<String> listOfInventory = reader.readIn(CSVFile);
-        List<ComputerComponent> listOfComponents = reader.setComponent(listOfInventory);
+        ReadIn reader = new ReadIn();
+        List<ComputerComponent> listOfComponents = reader.readFileSetComponent(CSVFile);
         Functionalities functions = new Functionalities(listOfComponents);
         functions.sortList(listOfComponents);
         functions.averagePrice(listOfComponents);

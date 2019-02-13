@@ -6,13 +6,12 @@ import com.murex.retail.experience.accessory.DefaultMouse;
 import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
 import com.murex.retail.experience.processors.DefaultCPU;
 import com.murex.retail.experience.processors.DefaultGPU;
-import com.murex.retail.experience.storage.concreteMemory;
-import com.murex.retail.experience.storage.concreteStorage;
+import com.murex.retail.experience.storage.DefaultMemory;
+import com.murex.retail.experience.storage.DefaultStorage;
 
 public class ComputerComponentFactory {
 
-    public static AbstractComputerComponent getComponent(String[] inputArray){
-
+    public static AbstractComputerComponent newComponent(String[] inputArray){
         String id = inputArray[0];
         String category = inputArray[1];
         String name = inputArray[2];
@@ -40,10 +39,10 @@ public class ComputerComponentFactory {
                 return new DefaultMonitor(id, category, name, brand, dimension, resolution, color, price, quantity);
             }
             case ("Memory"): {
-                return new concreteMemory(id, category, name, brand, size, interfaceType, price, quantity);
+                return new DefaultMemory(id, category, name, brand, size, interfaceType, price, quantity);
             }
             case ("Storage"): {
-                return new concreteStorage(id, category, name, brand, size, dimension, interfaceType, price, quantity);
+                return new DefaultStorage(id, category, name, brand, size, dimension, interfaceType, price, quantity);
             }
             case ("CPU"): {
                 return new DefaultCPU(id, category, name, brand, productLine, coreNum, processorSpeed, graphicSpeed, price, quantity);

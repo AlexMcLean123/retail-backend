@@ -1,5 +1,7 @@
 package com.murex.retail.experience.accessory;
 
-public interface Monitor {
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+
+public interface Monitor extends ComputerComponent {
      String getResolution();
 }

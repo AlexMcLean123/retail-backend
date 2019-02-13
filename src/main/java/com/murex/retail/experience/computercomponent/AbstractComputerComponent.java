@@ -16,7 +16,7 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
         this.price = price;
         this.quantity = quantity;
     }
-    
+
 
     public String getId() {
         return id;
@@ -42,5 +42,24 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
         return quantity;
     }
 
+    public String toString() {
+        return getId() + "\t|\t" +
+                getCategory() + "\t|\t" +
+                getName() + "\t|\t" +
+                getBrand() + "\t|\t" +
+                getPrice() + "\t|\t" +
+                getQuantity();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof ComputerComponent))
+            return false;
+        if (obj == this)
+            return true;
+        return this.getId() == ((ComputerComponent) obj).getId();
+    }
 
 }
+

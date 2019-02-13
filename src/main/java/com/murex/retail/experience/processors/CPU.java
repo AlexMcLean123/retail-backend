@@ -1,4 +1,6 @@
 package com.murex.retail.experience.processors;
 
-public interface CPU {
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+
+public interface CPU extends ComputerComponent {
 }

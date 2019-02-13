@@ -16,7 +16,7 @@ public class DefaultStorage extends AbstractStorage implements Storage {
 
     @Override
     public String toString() {
-        return super.toString() +
+        return super.toString() +"\t|\t"+
                 getDimension();
     }
 }

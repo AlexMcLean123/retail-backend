@@ -1,5 +1,7 @@
 package com.murex.retail.experience.processors;
 
-public interface GPU {
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+
+public interface GPU extends ComputerComponent {
 
 }

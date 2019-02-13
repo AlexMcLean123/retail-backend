@@ -9,22 +9,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainTest {
-    static final String filePath = "src/main/resources/Inventory.csv";
+    private static final String filePath = "src/main/resources/Inventory.csv";
 
     @Test
      void testException() {
-        readIn reader = new readIn();
+        ReadIn reader = new ReadIn();
         Throwable exception = assertThrows(IOException.class, () -> {
-            List<String> testFile = reader.readIn("notafile");
+            List<ComputerComponent> testFile = reader.readFileSetComponent("notafile");
         });
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
 
     @Test
      void testProgramOutput() throws IOException, IllegalAccessException{
-        readIn reader = new readIn();
-        List<String> listOfInventory = reader.readIn(filePath);
-        List<ComputerComponent> allComponents = reader.setComponent(listOfInventory);
+        ReadIn reader = new ReadIn();
+       // List<String> listOfInventory = reader.readFile(filePath);
+        List<ComputerComponent> allComponents = reader.readFileSetComponent(filePath);
         Functionalities functions = new Functionalities(allComponents);
 
         testItemsSorted(functions, allComponents);

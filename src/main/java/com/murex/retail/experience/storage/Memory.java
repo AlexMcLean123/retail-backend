@@ -1,4 +1,7 @@
 package com.murex.retail.experience.storage;
 
-public interface Memory {
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+
+public interface Memory extends ComputerComponent {
+
 }

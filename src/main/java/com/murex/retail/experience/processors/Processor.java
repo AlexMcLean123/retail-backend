@@ -1,6 +1,8 @@
 package com.murex.retail.experience.processors;
 
-public interface Processor {
+import com.murex.retail.experience.computercomponent.ComputerComponent;
+
+public interface Processor extends ComputerComponent {
     String getProuctline();
 
     String getNumberOfCores();

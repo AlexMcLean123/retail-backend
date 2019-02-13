@@ -5,7 +5,6 @@ public class DefaultKeyboard extends AbstractAccessory implements Keyboard {
         super(id, category, name, brand, dimension, color, price, quantity);
     }
 
-   @Override
     public String toString(){
         return super.toString();
    }

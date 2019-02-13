@@ -5,7 +5,7 @@ public class DefaultCPU extends AbstractProcessor implements CPU {
         super(id, category, name, brand, productline, numberOfCores, processorSpeed, graphicSpeed, price, quantity);
     }
 
-    @Override
+
     public String toString() {
         return super.toString();
     }

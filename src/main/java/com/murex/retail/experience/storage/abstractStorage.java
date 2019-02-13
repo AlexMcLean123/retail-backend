@@ -2,11 +2,11 @@ package com.murex.retail.experience.storage;
 
 import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
 
-public abstract class abstractStorage extends AbstractComputerComponent {
+public abstract class AbstractStorage extends AbstractComputerComponent {
     private String size;
     private String memoryInterface;
 
-    public abstractStorage(String id, String category, String name, String brand, String size, String memoryInterface, int price, int quantity) {
+    public AbstractStorage(String id, String category, String name, String brand, String size, String memoryInterface, int price, int quantity) {
         super(id, category, name, brand, price, quantity);
         this.size = size;
         this.memoryInterface = memoryInterface;

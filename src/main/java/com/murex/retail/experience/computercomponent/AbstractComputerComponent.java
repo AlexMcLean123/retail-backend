@@ -16,30 +16,7 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
         this.price = price;
         this.quantity = quantity;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    
 
     public String getId() {
         return id;
@@ -63,14 +40,6 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    @Override
-    public String toString() {
-        return getId() + "\t|\t" + getCategory() + "\t|\t" +
-                getName() + "\t|\t" + getBrand() +
-                "\t|\t" + getPrice() + "\t|\t"
-                + getQuantity();
     }
 
 

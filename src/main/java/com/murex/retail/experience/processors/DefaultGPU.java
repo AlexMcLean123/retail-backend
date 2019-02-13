@@ -7,15 +7,6 @@ public class DefaultGPU extends AbstractProcessor implements GPU {
 
     @Override
     public String toString() {
-        return getId() +
-                "\t|\t" + getCategory() +
-                "\t|\t" + getName() + "\t|\t" +
-                getBrand() + "\t|\t" +
-                getProuctline() + "\t|\t" +
-                getNumberOfCores() + "\t|\t" +
-                getProcessorSpeed() + "\t|\t" +
-                getGraphicClockSpeed() + "\t|\t" +
-                getPrice() + "\t|\t" +
-                getQuantity();
+        return super.toString();
     }
 }

@@ -32,5 +32,17 @@ public abstract class AbstractProcessor extends AbstractComputerComponent implem
         return graphicClockSpeed;
     }
 
-
+    @Override
+    public String toString() {
+        return getId() + "\t|\t" +
+                getCategory() + "\t|\t" +
+                getName() + "\t|\t" +
+                getBrand() + "\t|\t" +
+                getProuctline() + "\t|\t" +
+                getNumberOfCores() + "\t|\t" +
+                getProcessorSpeed() + "\t|\t" +
+                getGraphicClockSpeed() + "\t|\t" +
+                getPrice() + "\t|\t" +
+                getQuantity();
+    }
 }

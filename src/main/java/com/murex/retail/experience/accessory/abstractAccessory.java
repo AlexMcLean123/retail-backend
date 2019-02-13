@@ -20,5 +20,17 @@ public abstract class AbstractAccessory extends AbstractComputerComponent implem
         return dimension;
     }
 
-
+    public String toString() {
+        return getId() + "\t|\t" +
+                getCategory() + "\t|\t" +
+                getName() + "\t|\t" +
+                getBrand() + "\t|\t" +
+                getDimension() + "\t|\t" +
+                getColor() + "\t|\t" +
+                getPrice() + "\t|\t" +
+                getQuantity();
+    }
 }
+
+
+

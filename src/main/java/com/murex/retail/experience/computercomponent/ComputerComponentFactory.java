@@ -3,14 +3,15 @@ package com.murex.retail.experience.computercomponent;
 import com.murex.retail.experience.accessory.DefaultKeyboard;
 import com.murex.retail.experience.accessory.DefaultMonitor;
 import com.murex.retail.experience.accessory.DefaultMouse;
-import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
 import com.murex.retail.experience.processors.DefaultCPU;
 import com.murex.retail.experience.processors.DefaultGPU;
 import com.murex.retail.experience.storage.DefaultMemory;
 import com.murex.retail.experience.storage.DefaultStorage;
 
-public class ComputerComponentFactory {
+public final class ComputerComponentFactory {
+    private ComputerComponentFactory(){
 
+    }
     public static AbstractComputerComponent newComponent(String[] inputArray){
         String id = inputArray[0];
         String category = inputArray[1];
@@ -29,30 +30,29 @@ public class ComputerComponentFactory {
         int quantity = Integer.parseInt(inputArray[14]);
 
         switch (category) {
-            case ("Keyboard"): {
+            case ("Keyboard"):
                 return new DefaultKeyboard(id, category, name, brand, dimension, color, price, quantity);
-            }
-            case ("Mouse"): {
+
+            case ("Mouse"):
                 return new DefaultMouse(id, category, name, brand, dimension, color, price, quantity);
-            }
-            case ("Monitor"): {
+
+            case ("Monitor"):
                 return new DefaultMonitor(id, category, name, brand, dimension, resolution, color, price, quantity);
-            }
-            case ("Memory"): {
+
+            case ("Memory"):
                 return new DefaultMemory(id, category, name, brand, size, interfaceType, price, quantity);
-            }
-            case ("Storage"): {
+
+            case ("Storage"):
                 return new DefaultStorage(id, category, name, brand, size, dimension, interfaceType, price, quantity);
-            }
-            case ("CPU"): {
+
+            case ("CPU"):
                 return new DefaultCPU(id, category, name, brand, productLine, coreNum, processorSpeed, graphicSpeed, price, quantity);
-            }
-            case ("GPU"): {
+
+            case ("GPU"):
                 return new DefaultGPU(id, category, name, brand, productLine, coreNum, processorSpeed, graphicSpeed, price, quantity);
-            }
-            default: {
+
+            default:
                 throw new IllegalArgumentException("Category not matched: " + category);
-            }
         }
 
     }

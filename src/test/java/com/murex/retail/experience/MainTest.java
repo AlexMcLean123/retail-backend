@@ -1,5 +1,6 @@
 package com.murex.retail.experience;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,22 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainTest {
-    private static final String filePath = "src/main/resources/Inventory.csv";
+    private static final String FILE_PATH = "src/main/resources/Inventory.csv";
 
     @Test
      void testException() {
         ReadIn reader = new ReadIn();
         Throwable exception = assertThrows(IOException.class, () -> {
-            List<ComputerComponent> testFile = reader.readFileSetComponent("notafile");
+            List<String> testFile = reader.readInFileToList("notafile");
         });
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
 
     @Test
-     void testProgramOutput() throws IOException, IllegalAccessException{
+     void testProgramOutput() throws IOException, SQLException, Exception{
         ReadIn reader = new ReadIn();
-       // List<String> listOfInventory = reader.readFile(filePath);
-        List<ComputerComponent> allComponents = reader.readFileSetComponent(filePath);
+        List<ComputerComponent> allComponents = reader.createComponents(FILE_PATH);
         Functionalities functions = new Functionalities(allComponents);
 
         testItemsSorted(functions, allComponents);

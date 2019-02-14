@@ -1,6 +1,6 @@
 package com.murex.retail.experience.storage;
 
-        import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
+import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
 
 public abstract class AbstractStorage extends AbstractComputerComponent {
     private String size;

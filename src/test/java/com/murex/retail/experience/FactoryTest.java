@@ -6,35 +6,35 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class factoryTest {
+public class FactoryTest {
     @Test
-    void testFactory() throws IllegalAccessException {
-        String[] monitorDetails = {"IDmonitor", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent monitor = new ComputerComponentFactory().newComponent(monitorDetails);
-        assertEquals("IDmonitor", monitor.getId());
+    void testFactory(){
+        String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
+        AbstractComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
+        assertEquals("IDMonitor", monitor.getId());
 
-        String[] mouseDetails = {"IDmouse", "Mouse", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent mouse = new ComputerComponentFactory().newComponent(mouseDetails);
-        assertEquals("IDmouse", mouse.getId());
+        String[] mouseDetails = {"IDMouse", "Mouse", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
+        AbstractComputerComponent mouse =  ComputerComponentFactory.newComponent(mouseDetails);
+        assertEquals("IDMouse", mouse.getId());
 
         String[] storageDetails = {"IDStorage", "Storage", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent storage = new ComputerComponentFactory().newComponent(storageDetails);
+        AbstractComputerComponent storage =  ComputerComponentFactory.newComponent(storageDetails);
         assertEquals("IDStorage", storage.getId());
 
         String[] KeyboardDetails = {"IDKeyboard", "Keyboard", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent Keyboard = new ComputerComponentFactory().newComponent(KeyboardDetails);
+        AbstractComputerComponent Keyboard =  ComputerComponentFactory.newComponent(KeyboardDetails);
         assertEquals("IDKeyboard", Keyboard.getId());
 
         String[] CPUDetails = {"IDCPU", "CPU", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent CPU = new ComputerComponentFactory().newComponent(CPUDetails);
+        AbstractComputerComponent CPU =  ComputerComponentFactory.newComponent(CPUDetails);
         assertEquals("IDCPU", CPU.getId());
 
         String[] GPUDetails = {"IDGPU", "GPU", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent GPU = new ComputerComponentFactory().newComponent(GPUDetails);
+        AbstractComputerComponent GPU =  ComputerComponentFactory.newComponent(GPUDetails);
         assertEquals("IDGPU", GPU.getId());
 
         String[] MemoryDetails = {"IDMemory", "Memory", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent Memory = new ComputerComponentFactory().newComponent(MemoryDetails);
+        AbstractComputerComponent Memory =  ComputerComponentFactory.newComponent(MemoryDetails);
         assertEquals("IDMemory", Memory.getId());
 
     }

@@ -6,5 +6,4 @@ public class DefaultGPU extends AbstractProcessor implements GPU {
     }
 
 
-
 }

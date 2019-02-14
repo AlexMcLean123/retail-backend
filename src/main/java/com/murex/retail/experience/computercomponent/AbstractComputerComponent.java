@@ -58,7 +58,8 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
             return false;
         if (obj == this)
             return true;
-        return this.getId() == ((ComputerComponent) obj).getId();
+        return( this.getId() == ((ComputerComponent) obj).getId()
+                && this.getName()== ((ComputerComponent)obj).getName());
     }
 
 }

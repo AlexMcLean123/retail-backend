@@ -6,5 +6,4 @@ public class DefaultCPU extends AbstractProcessor implements CPU {
     }
 
 
-
 }

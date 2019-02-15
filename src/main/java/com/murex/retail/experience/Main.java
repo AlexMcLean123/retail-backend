@@ -6,7 +6,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         final String CSV_FILE = "src/main/resources/Inventory.csv";
         ReadIn reader = new ReadIn();
-        List<ComputerComponent> listOfComponents = reader.createComponents(CSV_FILE);
+        List<String> fileInList = reader.readInFileToList(CSV_FILE);
+        DatabaseFunction.insertSQLIntoDatabase(fileInList);
+        List<ComputerComponent> listOfComponents = DatabaseFunction.extractFromDatabaseMakeComponent();
         Functionalities functions = new Functionalities(listOfComponents);
         functions.sortList(listOfComponents);
         functions.averagePrice(listOfComponents);

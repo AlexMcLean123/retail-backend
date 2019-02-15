@@ -5,7 +5,7 @@ import com.murex.retail.experience.computercomponent.ComputerComponent;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.murex.retail.experience.ReadIn.logger;
+import static com.murex.retail.experience.ReadIn.LOGGER;
 
 public class Functionalities {
     private Map<String, List<ComputerComponent>> categoryMap;
@@ -20,7 +20,7 @@ public class Functionalities {
     public List<ComputerComponent> sortList(List<ComputerComponent> listOfComponents) {
         return listOfComponents.stream().sorted(Comparator.comparing(ComputerComponent::getCategory)
                 .thenComparing(ComputerComponent::getName)
-                .thenComparing(ComputerComponent::getBrand)).limit(10).peek(b -> logger.info(b.toString()))
+                .thenComparing(ComputerComponent::getBrand)).limit(10).peek(b -> LOGGER.info(b.toString()))
                 .collect(Collectors.toList());
     }
 
@@ -29,13 +29,13 @@ public class Functionalities {
                 listOfComponentsIn.stream()
                         .mapToDouble(ComputerComponent::getPrice)
                         .average().orElse(0);
-        logger.info("Average price of a component: " + averagePrice);
+        LOGGER.info("Average price of a component: " + averagePrice);
         return averagePrice;
     }
 
     public double averagePriceOfCPU() {
         double cpuAveragePrice = categoryMap.get("CPU").stream().mapToDouble(ComputerComponent::getPrice).average().orElse(0);
-        logger.info("Average price of a CPU: " + cpuAveragePrice);
+        LOGGER.info("Average price of a CPU: " + cpuAveragePrice);
         return cpuAveragePrice;
     }
 
@@ -44,7 +44,7 @@ public class Functionalities {
                 .min(Comparator.comparing(ComputerComponent::getPrice))
                 .get()
         );
-        logger.info("Cheapest: " + cheapestComponent.toString());
+        LOGGER.info("Cheapest: " + cheapestComponent.toString());
         return cheapestComponent;
     }
 
@@ -52,9 +52,9 @@ public class Functionalities {
         List<ComputerComponent> quantities = new ArrayList<>();
         categoryMap.forEach((key, value) -> quantities.add(value.stream().max(Comparator.comparing(ComputerComponent::getPrice)).get()));
         for (ComputerComponent x : quantities) {
-            logger.info("Most Expensive: " + x);
+            LOGGER.info("Most Expensive: " + x);
         }
-        quantities.forEach(k->logger.info("Most Expensive: " + k ));
+        quantities.forEach(k->LOGGER.info("Most Expensive: " + k ));
         return quantities;
     }
 
@@ -63,7 +63,7 @@ public class Functionalities {
         categoryMap.forEach((key, value) ->
                 quantityOfItems.put(key, value.stream().mapToInt(ComputerComponent::getQuantity).sum()));
 
-        quantityOfItems.forEach((k,v)-> logger.info("Category: " + k + " Quantity: " + v));
+        quantityOfItems.forEach((k,v)-> LOGGER.info("Category: " + k + " Quantity: " + v));
         return quantityOfItems;
     }
 
@@ -71,7 +71,7 @@ public class Functionalities {
         Map<String, Integer> brandCategory = new HashMap<>();
         categoryBrandMap.forEach((category, brandMap) -> brandMap.forEach((brand, components) -> brandCategory.put(category + " " + brand, components.stream().mapToInt(ComputerComponent::getQuantity).sum())));
         brandCategory.forEach((k,v)->
-                logger.info("Category & Brand : " + k + "\t|\t" + "Quantity: " + v));
+                LOGGER.info("Category & Brand : " + k + "\t|\t" + "Quantity: " + v));
         return brandCategory;
     }
 }

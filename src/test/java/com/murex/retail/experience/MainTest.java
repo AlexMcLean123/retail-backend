@@ -20,11 +20,12 @@ class MainTest {
         });
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
-
     @Test
-     void testProgramOutput() throws IOException, SQLException, Exception{
+     void testProgramOutput()throws IOException{
         ReadIn reader = new ReadIn();
-        List<ComputerComponent> allComponents = reader.createComponents(FILE_PATH);
+        List<String> fileInList = reader.readInFileToList(FILE_PATH);
+        DatabaseFunction.insertSQLIntoDatabase(fileInList);
+        List<ComputerComponent> allComponents = DatabaseFunction.extractFromDatabaseMakeComponent();
         Functionalities functions = new Functionalities(allComponents);
 
         testItemsSorted(functions, allComponents);

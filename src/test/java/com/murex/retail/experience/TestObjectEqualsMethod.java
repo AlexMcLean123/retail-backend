@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestObjectEqualsMethod {
     @Test
-    public void testEqualsSameObjectDifferentID(){
+     void testEqualsSameObjectDifferentID(){
         String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
         AbstractComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
         String[] mouseDetails = {"IDMonitor2", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
@@ -16,12 +16,19 @@ public class TestObjectEqualsMethod {
         assertEquals(false, mouse.equals(monitor));
     }
     @Test
-    public void testEqualsSameObjectSameID(){
+     void testEqualsSameObjectSameID(){
         String[] monitorDetails = {"IDMonitor2", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
         AbstractComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
         String[] mouseDetails = {"IDMonitor2", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
         AbstractComputerComponent mouse =  ComputerComponentFactory.newComponent(mouseDetails);
         assertEquals(true, mouse.equals(monitor));
 
+    }
+    @Test
+    void testDifferentObject(){
+        String s1="hello";
+        String[] monitorDetails = {"IDMonitor2", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
+        AbstractComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
+        assertEquals(false, monitor.equals(s1));
     }
 }

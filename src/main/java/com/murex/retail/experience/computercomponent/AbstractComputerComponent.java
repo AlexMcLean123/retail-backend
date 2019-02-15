@@ -7,6 +7,7 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
     public String brand;
     public int price;
     public int quantity;
+    public final String TAB = "\t|\t";
 
     public AbstractComputerComponent(String id, String category, String name, String brand, int price, int quantity) {
         this.id = id;
@@ -43,23 +44,23 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
     }
 
     public String toString() {
-        return getId() + "\t|\t" +
-                getCategory() + "\t|\t" +
-                getName() + "\t|\t" +
-                getBrand() + "\t|\t" +
-                getPrice() + "\t|\t" +
+        return getId() + TAB +
+                getCategory() + TAB +
+                getName() + TAB +
+                getBrand() + TAB +
+                getPrice() + TAB +
                 getQuantity();
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (!(obj instanceof ComputerComponent))
             return false;
+        ComputerComponent object = (ComputerComponent) obj;
         if (obj == this)
             return true;
-        return( this.getId() == ((ComputerComponent) obj).getId()
-                && this.getName()== ((ComputerComponent)obj).getName());
+        return (this.getId() == object.getId()
+                && this.getName() == object.getName());
     }
 
 }

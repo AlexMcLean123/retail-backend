@@ -24,9 +24,9 @@ public abstract class AbstractStorage extends AbstractComputerComponent {
 
     @Override
     public String toString() {
-        return getId() + "\t|\t" + getCategory() + "\t|\t" +
-                getName() + "\t|\t" + getBrand() + "\t|\t" + getSize() + "\t|\t" + getMemoryInterface() +
-                "\t|\t" + getPrice() + "\t|\t"
+        return getId() + TAB + getCategory() + TAB +
+                getName() + TAB + getBrand() + TAB + getSize() + TAB + getMemoryInterface() +
+                TAB + getPrice() + TAB
                 + getQuantity();
     }
 }

@@ -5,8 +5,4 @@ public class DefaultMouse extends AbstractAccessory implements Mouse {
         super(id, category, name, brand, dimension, color, price, quantity);
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

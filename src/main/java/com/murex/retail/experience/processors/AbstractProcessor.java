@@ -34,15 +34,15 @@ public abstract class AbstractProcessor extends AbstractComputerComponent implem
 
     @Override
     public String toString() {
-        return getId() + "\t|\t" +
-                getCategory() + "\t|\t" +
-                getName() + "\t|\t" +
-                getBrand() + "\t|\t" +
-                getProuctline() + "\t|\t" +
-                getNumberOfCores() + "\t|\t" +
-                getProcessorSpeed() + "\t|\t" +
-                getGraphicClockSpeed() + "\t|\t" +
-                getPrice() + "\t|\t" +
+        return getId() + TAB +
+                getCategory() + TAB +
+                getName() + TAB +
+                getBrand() + TAB +
+                getProuctline() + TAB  +
+                getNumberOfCores() + TAB +
+                getProcessorSpeed() + TAB +
+                getGraphicClockSpeed() + TAB +
+                getPrice() + TAB +
                 getQuantity();
     }
 }

@@ -7,6 +7,7 @@ public class Main {
         final String CSV_FILE = "src/main/resources/Inventory.csv";
         ReadIn reader = new ReadIn();
         List<String> fileInList = reader.readInFileToList(CSV_FILE);
+        TruncateTable.truncate();
         DatabaseFunction.insertSQLIntoDatabase(fileInList);
         List<ComputerComponent> listOfComponents = DatabaseFunction.extractFromDatabaseMakeComponent();
         Functionalities functions = new Functionalities(listOfComponents);

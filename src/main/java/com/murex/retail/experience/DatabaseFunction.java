@@ -23,7 +23,7 @@ public final class DatabaseFunction {
                 InputToSQL.parseToSQL(componentValues);
             }
         } catch (SQLException e) {
-            LOGGER.error("Exception Caught" + e);
+            LOGGER.error("Exception Caught: " + e);
         }
     }
     public static List<ComputerComponent> extractFromDatabaseMakeComponent(){
@@ -36,7 +36,7 @@ public final class DatabaseFunction {
                 componentList.add(ComputerComponentFactory.newComponent(componentValues));
             }
         }
-        catch(SQLException | ClassNotFoundException e){
+        catch(SQLException e){
             LOGGER.error("Exception caught: " + e);
         }
         return componentList;

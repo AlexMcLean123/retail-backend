@@ -44,7 +44,7 @@ class MainTest {
     }
 
     private void testAveragePrice(Functionalities function, List<ComputerComponent> com) {
-        assertEquals(145.83, function.averagePrice(com));
+        assertEquals(145.37623762376236, function.averagePrice(com));
     }
 
     private void testAveragePriceOfACPU(Functionalities function) {
@@ -71,7 +71,7 @@ class MainTest {
     private void testComponentsByCategory(Functionalities function) {
         Map<String, Integer> componentsByCat = function.componentQuantityByCategory();
         assertEquals(82, componentsByCat.get("Storage").intValue());
-        assertEquals(192, componentsByCat.get("Monitor").intValue());
+        assertEquals(292, componentsByCat.get("Monitor").intValue());
         assertEquals(141, componentsByCat.get("Memory").intValue());
         assertEquals(312, componentsByCat.get("Mouse").intValue());
         assertEquals(285, componentsByCat.get("Keyboard").intValue());

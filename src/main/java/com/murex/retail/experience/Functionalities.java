@@ -18,9 +18,11 @@ public class Functionalities {
     }
 
     public List<ComputerComponent> sortList(List<ComputerComponent> listOfComponents) {
-        return listOfComponents.stream().sorted(Comparator.comparing(ComputerComponent::getCategory)
+        return listOfComponents.stream().sorted(Comparator
+                .comparing(ComputerComponent::getCategory)
                 .thenComparing(ComputerComponent::getName)
-                .thenComparing(ComputerComponent::getBrand)).limit(10).peek(b -> LOGGER.info(b.toString()))
+                .thenComparing(ComputerComponent::getBrand))
+                .limit(10).peek(LOGGER::info)
                 .collect(Collectors.toList());
     }
 

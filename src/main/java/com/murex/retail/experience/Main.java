@@ -8,8 +8,8 @@ public class Main {
         ReadIn reader = new ReadIn();
         List<String> fileInList = reader.readInFileToList(CSV_FILE);
         TruncateTable.truncate();
-        DatabaseFunction.insertSQLIntoDatabase(fileInList);
-        List<ComputerComponent> listOfComponents = DatabaseFunction.extractFromDatabaseMakeComponent();
+        DatabaseInserter.insertSQLIntoDatabase(fileInList);
+        List<ComputerComponent> listOfComponents = DatabaseExtractor.extractFromDatabaseMakeComponent();
         Functionalities functions = new Functionalities(listOfComponents);
         functions.sortList(listOfComponents);
         functions.averagePrice(listOfComponents);

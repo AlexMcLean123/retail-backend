@@ -8,15 +8,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestDatabase {
-    static String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores",
+public class DatabaseTest {
+    private static String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores",
             "processor", "resolution", "dimension", "graphic", "color", "interface", "size", "100", "100"};
     @Test
     void testInsertRead() throws SQLException {
         TruncateTable.truncate();
         InputToSQL.parseToSQL(monitorDetails);
-        List<ComputerComponent> listOfComponents = DatabaseFunction.extractFromDatabaseMakeComponent();
+        List<ComputerComponent> listOfComponents = DatabaseExtractor.extractFromDatabaseMakeComponent();
        assertEquals("IDMonitor	|	Monitor	|	name	|	brand	|	100	|	100	|	 color	|	resolution	|	dimension", listOfComponents.get(0).toString());
+       TruncateTable.truncate();
     }
 
 }

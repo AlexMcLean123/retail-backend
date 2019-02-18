@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.murex.retail.experience.computercomponent.ComputerComponent;
 import org.junit.jupiter.api.Test;
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,11 +23,11 @@ class MainTest {
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
     @Test
-     void testProgramOutput()throws IOException{
+     void testProgramOutput()throws IOException, SQLException {
         ReadIn reader = new ReadIn();
         List<String> fileInList = reader.readInFileToList(FILE_PATH);
-        DatabaseFunction.insertSQLIntoDatabase(fileInList);
-        List<ComputerComponent> allComponents = DatabaseFunction.extractFromDatabaseMakeComponent();
+        DatabaseInserter.insertSQLIntoDatabase(fileInList);
+        List<ComputerComponent> allComponents = DatabaseExtractor.extractFromDatabaseMakeComponent();
         Functionalities functions = new Functionalities(allComponents);
 
         testItemsSorted(functions, allComponents);
@@ -44,7 +46,8 @@ class MainTest {
     }
 
     private void testAveragePrice(Functionalities function, List<ComputerComponent> com) {
-        assertEquals(145.37623762376236, function.averagePrice(com));
+        double temp = function.averagePrice(com);
+        assertEquals(145.83, temp);
     }
 
     private void testAveragePriceOfACPU(Functionalities function) {
@@ -71,7 +74,7 @@ class MainTest {
     private void testComponentsByCategory(Functionalities function) {
         Map<String, Integer> componentsByCat = function.componentQuantityByCategory();
         assertEquals(82, componentsByCat.get("Storage").intValue());
-        assertEquals(292, componentsByCat.get("Monitor").intValue());
+        assertEquals(192, componentsByCat.get("Monitor").intValue());
         assertEquals(141, componentsByCat.get("Memory").intValue());
         assertEquals(312, componentsByCat.get("Mouse").intValue());
         assertEquals(285, componentsByCat.get("Keyboard").intValue());

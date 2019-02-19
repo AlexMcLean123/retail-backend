@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DatabaseTest {
     private static String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores",
@@ -24,6 +24,7 @@ public class DatabaseTest {
         listOfComponents.add(monitor);
         computerComponentDAO.insert(monitor);
         listReturned = computerComponentDAO.getAll();
+        assertNotNull(listReturned);
         assertEquals(listOfComponents.get(0).getId(),listReturned.get(0).getId());
         TruncateTable.truncate();
 

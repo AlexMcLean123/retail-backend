@@ -1,8 +1,10 @@
 package com.murex.retail.experience;
 
 import com.murex.retail.experience.computercomponent.ComputerComponent;
+import com.murex.retail.experience.computercomponent.ComputerComponentFactory;
 
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static com.murex.retail.experience.FileReader.LOGGER;
@@ -43,6 +45,7 @@ public class Report {
         return cpuAveragePrice;
     }
 
+
     public ComputerComponent getCheapest() {
         ComputerComponent cheapestComponent = listOfComponents.stream()
                 .min(Comparator.comparing(ComputerComponent::getPrice))
@@ -53,17 +56,24 @@ public class Report {
 
     public List<ComputerComponent> getMostExpensiveByCategory() {
         List<ComputerComponent> quantities = new ArrayList<>();
-        categoryMap.forEach((key, value) -> quantities.add(value.stream().max(Comparator.comparing(ComputerComponent::getPrice)).orElse(null)));
-        quantities.forEach(k -> LOGGER.info("Most Expensive: " + k));
+        for (Map.Entry<String, List<ComputerComponent>> entry : categoryMap.entrySet()) {
+            quantities.add(entry.getValue().stream().max(Comparator.comparing(ComputerComponent::getPrice)).orElse(null));
+        }
+        for (ComputerComponent c : quantities) {
+            LOGGER.info("Most Expensive: " + c);
+        }
         return quantities;
+
     }
 
     public Map<String, Integer> componentQuantityByCategory() {
         Map<String, Integer> quantityOfItems = new HashMap<>();
-        categoryMap.forEach((key, value) ->
-                quantityOfItems.put(key, value.stream().mapToInt(ComputerComponent::getQuantity).sum()));
-
-        quantityOfItems.forEach((k, v) -> LOGGER.info("Category: " + k + " Quantity: " + v));
+        for (Map.Entry<String, List<ComputerComponent>> entry : categoryMap.entrySet()) {
+            quantityOfItems.put(entry.getKey(), entry.getValue().stream().mapToInt(ComputerComponent::getQuantity).sum());
+        }
+        for (Map.Entry<String, Integer> entry : quantityOfItems.entrySet()) {
+            LOGGER.info("Category: " + entry.getKey() + " Quantity: " + entry.getValue());
+        }
         return quantityOfItems;
     }
 

@@ -25,6 +25,7 @@ class MainTest {
     }
     @Test
      void testProgramOutput()throws IOException, SQLException {
+        TruncateTable.truncate();
         FileReader reader = new FileReader();
         List<ComputerComponent> componentList = reader.readFileSetComponent(FILE_PATH);
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
@@ -41,6 +42,7 @@ class MainTest {
         testMostExpensiveComponentsInCat(report);
         testComponentsByCategory(report);
         testComponentsByBrandCategory(report);
+        TruncateTable.truncate();
     }
 
     private void testItemsSorted(Report report) {

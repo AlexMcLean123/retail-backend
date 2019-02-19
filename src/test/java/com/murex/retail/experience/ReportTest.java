@@ -9,9 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ReportTest {
 
@@ -48,7 +46,6 @@ class ReportTest {
             ComputerComponent v = emptyList.getCheapest();
         });
     }
-
     @Test
     public void test_given_empty_list_then_average_price_of_component_is_zero() {
         double v = emptyList.getAveragePrice();
@@ -81,13 +78,13 @@ class ReportTest {
     @Test
     public void test_given_empty_list_then_number_per_category_and_brand_is_empty() {
         Map<String, Integer> v = emptyList.componentQuantityByCategory();
-
         assertTrue(v.isEmpty());
     }
 
     @Test
     public void test_given_components_then_return_list_sorted() {
         comp = populatedList.getSortedList();
+        assertNotNull(comp);
         assertEquals("IDCPU", comp.get(0).getId());
         assertEquals("IDKeyboard", comp.get(1).getId());
         assertEquals("IDMonitor", comp.get(2).getId());
@@ -109,13 +106,15 @@ class ReportTest {
 
     @Test
     public void test_given_components_then_return_cheapest_component() {
-        ComputerComponent c = populatedList.getCheapest();
-        assertEquals("IDMonitor", c.getId());
+        ComputerComponent computerComponent = populatedList.getCheapest();
+        assertNotNull(computerComponent);
+        assertEquals("IDMonitor", computerComponent.getId());
     }
 
     @Test
     public void test_given_components_then_return_most_expensive_component_per_category() {
         List<ComputerComponent> mostExpensivePerCategory = populatedList.getMostExpensiveByCategory();
+        assertNotNull(mostExpensivePerCategory);
         assertEquals("Storage 120", mostExpensivePerCategory.get(0).getCategory() + " " + mostExpensivePerCategory.get(0).getPrice());
         assertEquals("Monitor 100", mostExpensivePerCategory.get(1).getCategory() + " " + mostExpensivePerCategory.get(1).getPrice());
         assertEquals("Mouse 100", mostExpensivePerCategory.get(2).getCategory() + " " + mostExpensivePerCategory.get(2).getPrice());
@@ -124,6 +123,7 @@ class ReportTest {
     @Test
     public void test_given_components_then_calculate_number_per_category() {
         Map<String, Integer> numPerCat = populatedList.componentQuantityByCategory();
+        assertNotNull(numPerCat);
         assertEquals(100, numPerCat.get("Storage").intValue());
         assertEquals(100, numPerCat.get("Keyboard").intValue());
         assertEquals(100, numPerCat.get("CPU").intValue());
@@ -132,6 +132,7 @@ class ReportTest {
     @Test
     public void test_given_components_number_per_category_and_brand() {
         Map<String, Integer> numPerCat = populatedList.componentQuantityByBrandCategory();
+        assertNotNull(numPerCat);
         assertEquals(100, numPerCat.get("Keyboard brand").intValue());
         assertEquals(100, numPerCat.get("CPU brand").intValue());
         assertEquals(100, numPerCat.get("Monitor brand").intValue());

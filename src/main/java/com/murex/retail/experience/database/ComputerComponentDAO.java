@@ -9,6 +9,8 @@ import com.murex.retail.experience.processors.DefaultCPU;
 import com.murex.retail.experience.processors.DefaultGPU;
 import com.murex.retail.experience.storage.DefaultMemory;
 import com.murex.retail.experience.storage.DefaultStorage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerComponentDAO {
-
+    private static final Logger LOGGER = LogManager.getLogger(ComputerComponentDAO.class);
     private final DataSource dataSource;
 
     public ComputerComponentDAO() {
@@ -27,7 +29,6 @@ public class ComputerComponentDAO {
     }
 
     public void insert(ComputerComponent computerComponent) throws SQLException {
-        String[] array = getComputerComponentAsString(computerComponent);
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO COMPUTER_COMPONENT(ID,CATEGORY, NAME,BRAND,PRODUCT_LINE," +
                      "NUMBER_OF_CORES,PROCESSOR_CLOCK_SPEED,GRAPHIC_CLOCK_SPEED, DIMENSION, RESOLUTION," +
@@ -51,7 +52,7 @@ public class ComputerComponentDAO {
             stmt.execute();
 
         } catch (SQLException e) {
-
+           LOGGER.error("SQL could not be inserted" + e);
 
         }
     }

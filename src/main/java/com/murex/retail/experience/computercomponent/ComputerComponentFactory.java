@@ -9,10 +9,11 @@ import com.murex.retail.experience.storage.DefaultMemory;
 import com.murex.retail.experience.storage.DefaultStorage;
 
 public final class ComputerComponentFactory {
-    private ComputerComponentFactory(){
+    private ComputerComponentFactory() {
 
     }
-    public static AbstractComputerComponent newComponent(String[] inputArray){
+
+    public static AbstractComputerComponent newComponent(String... inputArray) {
         String id = inputArray[0];
         String category = inputArray[1];
         String name = inputArray[2];

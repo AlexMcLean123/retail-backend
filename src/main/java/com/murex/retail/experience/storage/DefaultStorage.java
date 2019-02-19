@@ -4,7 +4,7 @@ public class DefaultStorage extends AbstractStorage implements Storage {
 
     private String dimension;
 
-    public DefaultStorage(String id, String category, String name, String brand, String size, String dimension, String memoryInterface, int price, int quantity) {
+    public DefaultStorage(String id, String category, String name, String brand, String dimension, String memoryInterface, String size, int price, int quantity) {
         super(id, category, name, brand, size, memoryInterface, price, quantity);
         this.dimension = dimension;
     }

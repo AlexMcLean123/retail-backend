@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.murex.retail.experience.computercomponent.ComputerComponent;
+import com.murex.retail.experience.database.ComputerComponentDAO;
 import org.junit.jupiter.api.Test;
 
 
@@ -16,49 +17,52 @@ class MainTest {
 
     @Test
      void testException() {
-        ReadIn reader = new ReadIn();
+        FileReader reader = new FileReader();
         Throwable exception = assertThrows(IOException.class, () -> {
-            List<String> testFile = reader.readInFileToList("notafile");
+            List<ComputerComponent> testFile = reader.readFileSetComponent("notafile");
         });
         assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
     }
     @Test
      void testProgramOutput()throws IOException, SQLException {
-        ReadIn reader = new ReadIn();
-        List<String> fileInList = reader.readInFileToList(FILE_PATH);
-        DatabaseInserter.insertSQLIntoDatabase(fileInList);
-        List<ComputerComponent> allComponents = DatabaseExtractor.extractFromDatabaseMakeComponent();
-        Functionalities functions = new Functionalities(allComponents);
+        FileReader reader = new FileReader();
+        List<ComputerComponent> componentList = reader.readFileSetComponent(FILE_PATH);
+        ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
+        for(ComputerComponent x : componentList){
+            computerComponentDAO.insert(x);
+        }
+        List<ComputerComponent> allComponents = computerComponentDAO.getAll();
+        Report report = new Report(allComponents);
 
-        testItemsSorted(functions, allComponents);
-        testAveragePrice(functions, allComponents);
-        testAveragePriceOfACPU(functions);
-        testCheapestComponent(functions, allComponents);
-        testMostExpensiveComponentsInCat(functions);
-        testComponentsByCategory(functions);
-        testComponentsByBrandCategory(functions);
+        testItemsSorted(report);
+        testAveragePrice(report);
+        testAveragePriceOfACPU(report);
+        testCheapestComponent(report);
+        testMostExpensiveComponentsInCat(report);
+        testComponentsByCategory(report);
+        testComponentsByBrandCategory(report);
     }
 
-    private void testItemsSorted(Functionalities function, List<ComputerComponent> com) {
-        List<ComputerComponent> sortedInventory = function.sortList(com);
+    private void testItemsSorted(Report report) {
+        List<ComputerComponent> sortedInventory = report.getSortedList();
         assertEquals("46100e71-689d-4f37-a94a-9cba59919d8f", sortedInventory.get(0).getId());
         assertEquals("bdf30ee6-665d-484c-af41-917bf9dc6d15", sortedInventory.get(9).getId());
     }
 
-    private void testAveragePrice(Functionalities function, List<ComputerComponent> com) {
-        double temp = function.averagePrice(com);
+    private void testAveragePrice(Report report) {
+        double temp = report.getAveragePrice();
         assertEquals(145.83, temp);
     }
 
-    private void testAveragePriceOfACPU(Functionalities function) {
-        assertEquals(92.43243243243244, function.averagePriceOfCPU());
+    private void testAveragePriceOfACPU(Report report) {
+        assertEquals(92.43243243243244, report.getAveragePriceOfCPU());
     }
 
-    private void testCheapestComponent(Functionalities function, List<ComputerComponent> com) {
-        assertEquals(4, function.getCheapest(com).getPrice());
+    private void testCheapestComponent(Report report) {
+        assertEquals(4, report.getCheapest().getPrice());
     }
 
-    private void testMostExpensiveComponentsInCat(Functionalities function) {
+    private void testMostExpensiveComponentsInCat(Report report) {
         String[] arrayOfId = {"375cfcec-9655-4c68-9afc-8c706685c883",
                 "79b536c7-6a19-4099-96ec-5cdcb33b9548",
                 "8611b32f-5efc-4452-9bfe-0f0776c63195",
@@ -67,12 +71,12 @@ class MainTest {
                 "96fc477c-0c66-4400-9217-94817072429f",
                 "ea2b9fd9-d908-4c78-84f0-201483cd91ff"};
         for (int i = 0; i < arrayOfId.length; i++) {
-            assertEquals(arrayOfId[i], function.getMostExpensiveByCategory().get(i).getId());
+            assertEquals(arrayOfId[i], report.getMostExpensiveByCategory().get(i).getId());
         }
     }
 
-    private void testComponentsByCategory(Functionalities function) {
-        Map<String, Integer> componentsByCat = function.componentQuantityByCategory();
+    private void testComponentsByCategory(Report report) {
+        Map<String, Integer> componentsByCat = report.componentQuantityByCategory();
         assertEquals(82, componentsByCat.get("Storage").intValue());
         assertEquals(192, componentsByCat.get("Monitor").intValue());
         assertEquals(141, componentsByCat.get("Memory").intValue());
@@ -82,8 +86,8 @@ class MainTest {
         assertEquals(55, componentsByCat.get("GPU").intValue());
     }
 
-    private void testComponentsByBrandCategory(Functionalities function) {
-        Map<String, Integer> brandCategory = function.componentQuantityByBrandCategory();
+    private void testComponentsByBrandCategory(Report report) {
+        Map<String, Integer> brandCategory = report.componentQuantityByBrandCategory();
         assertEquals(90, brandCategory.get("Keyboard logitech").intValue());
         assertEquals(210, brandCategory.get("CPU AMD").intValue());
         assertEquals(153, brandCategory.get("Keyboard Microsoft").intValue());
@@ -94,6 +98,9 @@ class MainTest {
         assertEquals(40, brandCategory.get("Memory Team").intValue());
         assertEquals(15, brandCategory.get("Storage Western Digital").intValue());
         assertEquals(80, brandCategory.get("Monitor Asus").intValue());
+
+
+
         assertEquals(55, brandCategory.get("GPU NVIDIA").intValue());
         assertEquals(52, brandCategory.get("Mouse Razer").intValue());
         assertEquals(27, brandCategory.get("Storage Kingston").intValue());

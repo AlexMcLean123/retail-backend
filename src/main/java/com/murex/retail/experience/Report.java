@@ -5,19 +5,21 @@ import com.murex.retail.experience.computercomponent.ComputerComponent;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.murex.retail.experience.ReadIn.LOGGER;
+import static com.murex.retail.experience.FileReader.LOGGER;
 
-public class Functionalities {
+public class Report {
+    private final List<ComputerComponent> listOfComponents;
     private Map<String, List<ComputerComponent>> categoryMap;
     private Map<String, Map<String, List<ComputerComponent>>> categoryBrandMap;
 
 
-    public Functionalities(List<ComputerComponent> listOfComponents) {
+    public Report(List<ComputerComponent> listOfComponents) {
+        this.listOfComponents = listOfComponents;
         categoryBrandMap = listOfComponents.stream().collect(Collectors.groupingBy(ComputerComponent::getCategory, Collectors.groupingBy(ComputerComponent::getBrand)));
         categoryMap = listOfComponents.stream().collect(Collectors.groupingBy(ComputerComponent::getCategory));
     }
 
-    public List<ComputerComponent> sortList(List<ComputerComponent> listOfComponents) {
+    public List<ComputerComponent> getSortedList() {
         return listOfComponents.stream().sorted(Comparator
                 .comparing(ComputerComponent::getCategory)
                 .thenComparing(ComputerComponent::getName)
@@ -26,37 +28,33 @@ public class Functionalities {
                 .collect(Collectors.toList());
     }
 
-    public double averagePrice(List<ComputerComponent> listOfComponentsIn) {
+    public double getAveragePrice() {
         double averagePrice =
-                listOfComponentsIn.stream()
+                listOfComponents.stream()
                         .mapToDouble(ComputerComponent::getPrice)
                         .average().orElse(0);
         LOGGER.info("Average price of a component: " + averagePrice);
         return averagePrice;
     }
 
-    public double averagePriceOfCPU() {
+    public double getAveragePriceOfCPU() {
         double cpuAveragePrice = categoryMap.get("CPU").stream().mapToDouble(ComputerComponent::getPrice).average().orElse(0);
         LOGGER.info("Average price of a CPU: " + cpuAveragePrice);
         return cpuAveragePrice;
     }
 
-    public ComputerComponent getCheapest(List<ComputerComponent> listOfComponents) {
-        ComputerComponent cheapestComponent = (listOfComponents.stream()
+    public ComputerComponent getCheapest() {
+        ComputerComponent cheapestComponent = listOfComponents.stream()
                 .min(Comparator.comparing(ComputerComponent::getPrice))
-                .get()
-        );
+                .orElse(null);
         LOGGER.info("Cheapest: " + cheapestComponent.toString());
         return cheapestComponent;
     }
 
     public List<ComputerComponent> getMostExpensiveByCategory() {
         List<ComputerComponent> quantities = new ArrayList<>();
-        categoryMap.forEach((key, value) -> quantities.add(value.stream().max(Comparator.comparing(ComputerComponent::getPrice)).get()));
-        for (ComputerComponent x : quantities) {
-            LOGGER.info("Most Expensive: " + x);
-        }
-        quantities.forEach(k->LOGGER.info("Most Expensive: " + k ));
+        categoryMap.forEach((key, value) -> quantities.add(value.stream().max(Comparator.comparing(ComputerComponent::getPrice)).orElse(null)));
+        quantities.forEach(k -> LOGGER.info("Most Expensive: " + k));
         return quantities;
     }
 
@@ -65,14 +63,14 @@ public class Functionalities {
         categoryMap.forEach((key, value) ->
                 quantityOfItems.put(key, value.stream().mapToInt(ComputerComponent::getQuantity).sum()));
 
-        quantityOfItems.forEach((k,v)-> LOGGER.info("Category: " + k + " Quantity: " + v));
+        quantityOfItems.forEach((k, v) -> LOGGER.info("Category: " + k + " Quantity: " + v));
         return quantityOfItems;
     }
 
     public Map<String, Integer> componentQuantityByBrandCategory() {
         Map<String, Integer> brandCategory = new HashMap<>();
         categoryBrandMap.forEach((category, brandMap) -> brandMap.forEach((brand, components) -> brandCategory.put(category + " " + brand, components.stream().mapToInt(ComputerComponent::getQuantity).sum())));
-        brandCategory.forEach((k,v)->
+        brandCategory.forEach((k, v) ->
                 LOGGER.info("Category & Brand : " + k + "\t|\t" + "Quantity: " + v));
         return brandCategory;
     }

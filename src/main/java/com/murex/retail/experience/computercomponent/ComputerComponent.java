@@ -2,16 +2,16 @@ package com.murex.retail.experience.computercomponent;
 
 public interface ComputerComponent {
 
-     String getId();
+    String getId();
 
-     String getCategory();
+    String getCategory();
 
-     String getName();
+    String getName();
 
-     String getBrand();
+    String getBrand();
 
-     int getPrice();
+    int getPrice();
 
-     int getQuantity();
+    int getQuantity();
 
 }

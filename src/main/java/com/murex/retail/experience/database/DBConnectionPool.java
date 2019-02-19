@@ -15,15 +15,15 @@ public class DBConnectionPool {
     private GenericObjectPool connectionPool = null;
 
     public DataSource setUp() {
-            connectionPool = new GenericObjectPool();
-            connectionPool.setMaxActive(10);
-            ConnectionFactory cf = new DriverManagerConnectionFactory(
-                    DBConnectionPool.URL,
-                    DBConnectionPool.USER,
-                    DBConnectionPool.PASS);
-            new PoolableConnectionFactory(cf, connectionPool, null, null, false, true);
-            return new PoolingDataSource(connectionPool);
-        }
+        connectionPool = new GenericObjectPool();
+        connectionPool.setMaxActive(10);
+        ConnectionFactory cf = new DriverManagerConnectionFactory(
+                DBConnectionPool.URL,
+                DBConnectionPool.USER,
+                DBConnectionPool.PASS);
+        new PoolableConnectionFactory(cf, connectionPool, null, null, false, true);
+        return new PoolingDataSource(connectionPool);
+    }
 
     public GenericObjectPool getConnectionPool() {
         return connectionPool;

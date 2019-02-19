@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TruncateTable {
-    private TruncateTable(){
+    private TruncateTable() {
 
     }
+
     public static void truncate() throws SQLException {
         DataSource dataSource = new DBConnectionPool().setUp();
         try (Connection conn = dataSource.getConnection();

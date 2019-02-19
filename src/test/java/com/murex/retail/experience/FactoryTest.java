@@ -22,9 +22,9 @@ public class FactoryTest {
         AbstractComputerComponent storage = ComputerComponentFactory.newComponent(storageDetails);
         assertEquals("IDStorage", storage.getId());
 
-        String[] KeyboardDetails = {"IDKeyboard", "Keyboard", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-        AbstractComputerComponent Keyboard = ComputerComponentFactory.newComponent(KeyboardDetails);
-        assertEquals("IDKeyboard", Keyboard.getId());
+        String[] keyboardDetails = {"IDKeyboard", "Keyboard", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
+        AbstractComputerComponent keyboard = ComputerComponentFactory.newComponent(keyboardDetails);
+        assertEquals("IDKeyboard", keyboard.getId());
 
         String[] CPUDetails = {"IDCPU", "CPU", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
         AbstractComputerComponent CPU = ComputerComponentFactory.newComponent(CPUDetails);

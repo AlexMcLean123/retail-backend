@@ -14,7 +14,7 @@ public class DefaultMonitor extends AbstractAccessory implements Monitor {
 
     @Override
     public String toString() {
-        return super.toString()+ TAB +
+        return super.toString() + TAB +
                 getResolution();
     }
 }

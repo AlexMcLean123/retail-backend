@@ -16,7 +16,7 @@ public abstract class AbstractProcessor extends AbstractComputerComponent implem
         this.graphicClockSpeed = graphicClockSpeed;
     }
 
-    public String getProuctline() {
+    public String getProductline() {
         return productline;
     }
 
@@ -38,7 +38,7 @@ public abstract class AbstractProcessor extends AbstractComputerComponent implem
                 getCategory() + TAB +
                 getName() + TAB +
                 getBrand() + TAB +
-                getProuctline() + TAB  +
+                getProductline() + TAB  +
                 getNumberOfCores() + TAB +
                 getProcessorSpeed() + TAB +
                 getGraphicClockSpeed() + TAB +

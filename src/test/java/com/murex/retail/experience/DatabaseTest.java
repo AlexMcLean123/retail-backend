@@ -20,7 +20,7 @@ public class DatabaseTest {
         List<ComputerComponent> listOfComponents = new ArrayList<>();
         List<ComputerComponent> listReturned;
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
-        AbstractComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
+        ComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
         listOfComponents.add(monitor);
         computerComponentDAO.insert(listOfComponents);
         listReturned = computerComponentDAO.getAll();

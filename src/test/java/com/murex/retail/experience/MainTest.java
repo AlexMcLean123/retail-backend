@@ -32,36 +32,36 @@ class MainTest {
         computerComponentDAO.insert(componentList);
         List<ComputerComponent> allComponents = computerComponentDAO.getAll();
         Report report = new Report(allComponents);
-        testItemsSorted(report);
-        testAveragePrice(report);
-        testAveragePriceOfACPU(report);
-        testCheapestComponent(report);
-        testMostExpensiveComponentsInCat(report);
-        testComponentsByCategory(report);
-        testComponentsByBrandCategory(report);
+        assertItemsSorted(report);
+        assertAveragePrice(report);
+        assertAveragePriceOfACPU(report);
+        assertCheapestComponent(report);
+        assertMostExpensiveComponentsInCat(report);
+        assertComponentsByCategory(report);
+        assertComponentsByBrandCategory(report);
         TruncateTable.truncate();
     }
 
-    private void testItemsSorted(Report report) {
+    private void assertItemsSorted(Report report) {
         List<ComputerComponent> sortedInventory = report.getSortedList();
         assertEquals("46100e71-689d-4f37-a94a-9cba59919d8f", sortedInventory.get(0).getId());
         assertEquals("bdf30ee6-665d-484c-af41-917bf9dc6d15", sortedInventory.get(9).getId());
     }
 
-    private void testAveragePrice(Report report) {
+    private void assertAveragePrice(Report report) {
         double temp = report.getAveragePrice();
         assertEquals(145.83, temp);
     }
 
-    private void testAveragePriceOfACPU(Report report) {
+    private void assertAveragePriceOfACPU(Report report) {
         assertEquals(92.43243243243244, report.getAveragePriceOfCPU());
     }
 
-    private void testCheapestComponent(Report report) {
+    private void assertCheapestComponent(Report report) {
        assertEquals(4, report.getCheapest().getPrice());
     }
 
-    private void testMostExpensiveComponentsInCat(Report report) {
+    private void assertMostExpensiveComponentsInCat(Report report) {
         String[] arrayOfId = {"375cfcec-9655-4c68-9afc-8c706685c883",
                 "79b536c7-6a19-4099-96ec-5cdcb33b9548",
                 "8611b32f-5efc-4452-9bfe-0f0776c63195",
@@ -74,7 +74,7 @@ class MainTest {
         }
     }
 
-    private void testComponentsByCategory(Report report) {
+    private void assertComponentsByCategory(Report report) {
         Map<String, Integer> componentsByCat = report.componentQuantityByCategory();
         assertEquals(82, componentsByCat.get("Storage").intValue());
         assertEquals(192, componentsByCat.get("Monitor").intValue());
@@ -85,7 +85,7 @@ class MainTest {
         assertEquals(55, componentsByCat.get("GPU").intValue());
     }
 
-    private void testComponentsByBrandCategory(Report report) {
+    private void assertComponentsByBrandCategory(Report report) {
         Map<String, Integer> brandCategory = report.componentQuantityByBrandCategory();
         assertEquals(90, brandCategory.get("Keyboard logitech").intValue());
         assertEquals(210, brandCategory.get("CPU AMD").intValue());

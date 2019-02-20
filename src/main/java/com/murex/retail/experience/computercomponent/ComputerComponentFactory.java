@@ -13,7 +13,7 @@ public final class ComputerComponentFactory {
 
     }
 
-    public static AbstractComputerComponent newComponent(String... inputArray) {
+    public static ComputerComponent newComponent(String... inputArray) {
         String id = inputArray[0];
         String category = inputArray[1];
         String name = inputArray[2];

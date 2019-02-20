@@ -14,10 +14,9 @@ public class Main {
         FileReader reader = new FileReader();
         List<ComputerComponent> componentList = reader.readFileSetComponent(CSV_FILE);
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
-        for (ComputerComponent x : componentList) {
-            computerComponentDAO.insert(x);
-        }
+        computerComponentDAO.insert(componentList);
         List<ComputerComponent> listOfComponents = computerComponentDAO.getAll();
+
         Report report = new Report(listOfComponents);
         report.getSortedList();
         report.getAveragePrice();

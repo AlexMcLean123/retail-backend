@@ -1,6 +1,4 @@
 package com.murex.retail.experience;
-
-
 import com.murex.retail.experience.computercomponent.ComputerComponent;
 import com.murex.retail.experience.computercomponent.ComputerComponentFactory;
 import org.apache.logging.log4j.LogManager;

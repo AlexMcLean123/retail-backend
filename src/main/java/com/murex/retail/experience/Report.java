@@ -1,10 +1,7 @@
 package com.murex.retail.experience;
 
 import com.murex.retail.experience.computercomponent.ComputerComponent;
-import com.murex.retail.experience.computercomponent.ComputerComponentFactory;
-
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static com.murex.retail.experience.FileReader.LOGGER;
@@ -47,9 +44,10 @@ public class Report {
 
 
     public ComputerComponent getCheapest() {
-        ComputerComponent cheapestComponent = listOfComponents.stream()
+        ComputerComponent cheapestComponent = (listOfComponents.stream()
                 .min(Comparator.comparing(ComputerComponent::getPrice))
-                .orElse(null);
+                .get()
+        );
         LOGGER.info("Cheapest: " + cheapestComponent.toString());
         return cheapestComponent;
     }

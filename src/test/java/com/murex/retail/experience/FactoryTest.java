@@ -47,8 +47,7 @@ public class FactoryTest {
 
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
             String[] ExceptionDetails = {"IDMemory", "Exception", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-            AbstractComputerComponent chair = ComputerComponentFactory.newComponent(ExceptionDetails);
-            chair.getId();
+            AbstractComputerComponent illegalArgument = ComputerComponentFactory.newComponent(ExceptionDetails);
         });
         assertEquals("Category not matched: Exception", exception.getMessage());
     }

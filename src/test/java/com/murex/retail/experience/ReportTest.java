@@ -42,7 +42,7 @@ class ReportTest {
 
     @Test
     public void test_given_empty_list_then_cheapest_component_throws_exception() {
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(NoSuchElementException.class, () -> {
             ComputerComponent v = emptyList.getCheapest();
         });
     }

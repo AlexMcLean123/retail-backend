@@ -29,12 +29,9 @@ class MainTest {
         FileReader reader = new FileReader();
         List<ComputerComponent> componentList = reader.readFileSetComponent(FILE_PATH);
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
-        for(ComputerComponent x : componentList){
-            computerComponentDAO.insert(x);
-        }
+        computerComponentDAO.insert(componentList);
         List<ComputerComponent> allComponents = computerComponentDAO.getAll();
         Report report = new Report(allComponents);
-
         testItemsSorted(report);
         testAveragePrice(report);
         testAveragePriceOfACPU(report);
@@ -61,7 +58,7 @@ class MainTest {
     }
 
     private void testCheapestComponent(Report report) {
-        assertEquals(4, report.getCheapest().getPrice());
+       assertEquals(4, report.getCheapest().getPrice());
     }
 
     private void testMostExpensiveComponentsInCat(Report report) {

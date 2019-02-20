@@ -28,32 +28,34 @@ public class ComputerComponentDAO {
         this.dataSource = new DBConnectionPool().setUp();
     }
 
-    public void insert(ComputerComponent computerComponent) throws SQLException {
-        try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO COMPUTER_COMPONENT(ID,CATEGORY, NAME,BRAND,PRODUCT_LINE," +
-                     "NUMBER_OF_CORES,PROCESSOR_CLOCK_SPEED,GRAPHIC_CLOCK_SPEED, DIMENSION, RESOLUTION," +
-                     "COLOR,INTERFACE,SIZE,PRICE,QUANTITY) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);")) {
-            String[] computerComponentAsString = getComputerComponentAsString(computerComponent);
-            stmt.setString(1, computerComponentAsString[0]);
-            stmt.setString(2, computerComponentAsString[1]);
-            stmt.setString(3, computerComponentAsString[2]);
-            stmt.setString(4, computerComponentAsString[3]);
-            stmt.setString(5, computerComponentAsString[4]);
-            stmt.setString(6, computerComponentAsString[5]);
-            stmt.setString(7, computerComponentAsString[6]);
-            stmt.setString(8, computerComponentAsString[7]);
-            stmt.setString(9, computerComponentAsString[8]);
-            stmt.setString(10, computerComponentAsString[9]);
-            stmt.setString(11, computerComponentAsString[10]);
-            stmt.setString(12, computerComponentAsString[11]);
-            stmt.setString(13, computerComponentAsString[12]);
-            stmt.setInt(14, computerComponent.getPrice());
-            stmt.setInt(15, computerComponent.getQuantity());
-            stmt.execute();
+    public void insert(List<ComputerComponent> computerComponentList) {
+        for (ComputerComponent com : computerComponentList) {
+            try (Connection conn = dataSource.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement("INSERT INTO COMPUTER_COMPONENT(ID,CATEGORY, NAME,BRAND,PRODUCT_LINE," +
+                         "NUMBER_OF_CORES,PROCESSOR_CLOCK_SPEED,GRAPHIC_CLOCK_SPEED, DIMENSION, RESOLUTION," +
+                         "COLOR,INTERFACE,SIZE,PRICE,QUANTITY) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);")) {
+                String[] computerComponentAsString = getComputerComponentAsString(com);
+                stmt.setString(1, computerComponentAsString[0]);
+                stmt.setString(2, computerComponentAsString[1]);
+                stmt.setString(3, computerComponentAsString[2]);
+                stmt.setString(4, computerComponentAsString[3]);
+                stmt.setString(5, computerComponentAsString[4]);
+                stmt.setString(6, computerComponentAsString[5]);
+                stmt.setString(7, computerComponentAsString[6]);
+                stmt.setString(8, computerComponentAsString[7]);
+                stmt.setString(9, computerComponentAsString[8]);
+                stmt.setString(10, computerComponentAsString[9]);
+                stmt.setString(11, computerComponentAsString[10]);
+                stmt.setString(12, computerComponentAsString[11]);
+                stmt.setString(13, computerComponentAsString[12]);
+                stmt.setInt(14, com.getPrice());
+                stmt.setInt(15, com.getQuantity());
+                stmt.execute();
 
-        } catch (SQLException e) {
-           LOGGER.error("SQL could not be inserted" + e);
+            } catch (SQLException e) {
+                LOGGER.error("SQL could not be inserted" + e);
 
+            }
         }
     }
 

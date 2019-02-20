@@ -22,7 +22,7 @@ public class DatabaseTest {
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
         AbstractComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
         listOfComponents.add(monitor);
-        computerComponentDAO.insert(monitor);
+        computerComponentDAO.insert(listOfComponents);
         listReturned = computerComponentDAO.getAll();
         assertNotNull(listReturned);
         assertEquals(listOfComponents.get(0).getId(),listReturned.get(0).getId());

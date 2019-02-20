@@ -46,9 +46,11 @@ public class Report {
     public ComputerComponent getCheapest() {
         ComputerComponent cheapestComponent = (listOfComponents.stream()
                 .min(Comparator.comparing(ComputerComponent::getPrice))
-                .get()
+                .orElse(null)
         );
-        LOGGER.info("Cheapest: " + cheapestComponent.toString());
+        if(cheapestComponent!= null) {
+            LOGGER.info("Cheapest: " + cheapestComponent.toString());
+        }
         return cheapestComponent;
     }
 

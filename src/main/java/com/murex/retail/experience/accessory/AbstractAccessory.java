@@ -2,8 +2,15 @@ package com.murex.retail.experience.accessory;
 
 import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class AbstractAccessory extends AbstractComputerComponent implements Accessory {
+    @Column(name = "COLOR")
     private String color;
+    @Column(name = "DIMENSION")
     private String dimension;
 
     protected AbstractAccessory(String id, String category, String name, String brand, String dimension, String color, int price, int quantity) {

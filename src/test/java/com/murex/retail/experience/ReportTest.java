@@ -20,7 +20,7 @@ class ReportTest {
 
     @BeforeAll
     static void setUpComponentList() throws SQLException {
-        TruncateTable.truncate();
+
 
         String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
 
@@ -40,12 +40,6 @@ class ReportTest {
         populatedList = new Report(comp);
     }
 
-    @Test
-    public void test_given_empty_list_then_cheapest_component_throws_exception() {
-        assertThrows(NoSuchElementException.class, () -> {
-            ComputerComponent v = emptyList.getCheapest();
-        });
-    }
     @Test
     public void test_given_empty_list_then_average_price_of_component_is_zero() {
         double v = emptyList.getAveragePrice();

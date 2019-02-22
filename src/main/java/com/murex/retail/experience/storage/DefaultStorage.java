@@ -1,7 +1,11 @@
 package com.murex.retail.experience.storage;
 
-public class DefaultStorage extends AbstractStorage implements Storage {
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
+public class DefaultStorage extends AbstractStorage implements Storage {
+    @Column(name = "DIMENSION")
     private String dimension;
 
     public DefaultStorage(String id, String category, String name, String brand, String dimension, String memoryInterface, String size, int price, int quantity) {
@@ -16,7 +20,7 @@ public class DefaultStorage extends AbstractStorage implements Storage {
 
     @Override
     public String toString() {
-        return super.toString() +"\t|\t"+
+        return super.toString() + "\t|\t" +
                 getDimension();
     }
 }

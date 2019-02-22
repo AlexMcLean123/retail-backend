@@ -25,12 +25,11 @@ class MainTest {
     }
     @Test
      void testProgramOutput()throws IOException, SQLException {
-        TruncateTable.truncate();
         FileReader reader = new FileReader();
         List<ComputerComponent> componentList = reader.readFileSetComponent(FILE_PATH);
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
         computerComponentDAO.insert(componentList);
-        List<ComputerComponent> allComponents = computerComponentDAO.getAll();
+        List<ComputerComponent> allComponents = computerComponentDAO.readAll();
         Report report = new Report(allComponents);
         assertItemsSorted(report);
         assertAveragePrice(report);
@@ -39,7 +38,6 @@ class MainTest {
         assertMostExpensiveComponentsInCat(report);
         assertComponentsByCategory(report);
         assertComponentsByBrandCategory(report);
-        TruncateTable.truncate();
     }
 
     private void assertItemsSorted(Report report) {

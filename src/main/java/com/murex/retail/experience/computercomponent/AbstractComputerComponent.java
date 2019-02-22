@@ -1,12 +1,25 @@
 package com.murex.retail.experience.computercomponent;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table (name = "COMPUTER_COMPONENT")
 public abstract class AbstractComputerComponent implements ComputerComponent {
+    @Id
+    @Column(name = "ID")
     public String id;
+    @Column(name = "CATEGORY")
     public String category;
+    @Column(name = "NAME")
     public String name;
+    @Column(name = "BRAND")
     public String brand;
+    @Column(name = "PRICE")
     public int price;
+    @Column(name = "QUANTITY")
     public int quantity;
+
     public final String TAB = "\t|\t";
 
     public AbstractComputerComponent(String id, String category, String name, String brand, int price, int quantity) {

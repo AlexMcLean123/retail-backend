@@ -1,4 +1,5 @@
 package com.murex.retail.experience;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -6,25 +7,21 @@ import java.util.Map;
 
 import com.murex.retail.experience.computercomponent.ComputerComponent;
 import com.murex.retail.experience.database.ComputerComponentDAO;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-class MainTest {
+public class MainTest {
     private static final String FILE_PATH = "src/main/resources/Inventory.csv";
 
-    @Test
-     void testException() {
+    @Test(expected = IOException.class)
+    public void testException() throws IOException {
         FileReader reader = new FileReader();
-        Throwable exception = assertThrows(IOException.class, () -> {
-            List<ComputerComponent> testFile = reader.readFileSetComponent("notafile");
-        });
-        assertEquals("Cannot read file: notafile", "Cannot read file: " + exception.getMessage());
+        List<ComputerComponent> testFile = reader.readFileSetComponent("notafile");
     }
+
     @Test
-     void testProgramOutput()throws IOException, SQLException {
+    public void testProgramOutput() throws IOException, SQLException {
         FileReader reader = new FileReader();
         List<ComputerComponent> componentList = reader.readFileSetComponent(FILE_PATH);
         ComputerComponentDAO computerComponentDAO = new ComputerComponentDAO();
@@ -48,15 +45,15 @@ class MainTest {
 
     private void assertAveragePrice(Report report) {
         double temp = report.getAveragePrice();
-        assertEquals(145.83, temp);
+        assertEquals(145.83, temp, 0.00);
     }
 
     private void assertAveragePriceOfACPU(Report report) {
-        assertEquals(92.43243243243244, report.getAveragePriceOfCPU());
+        assertEquals(92.43243243243244, report.getAveragePriceOfCPU(), 0.00);
     }
 
     private void assertCheapestComponent(Report report) {
-       assertEquals(4, report.getCheapest().getPrice());
+        assertEquals(4, report.getCheapest().getPrice());
     }
 
     private void assertMostExpensiveComponentsInCat(Report report) {
@@ -95,7 +92,6 @@ class MainTest {
         assertEquals(40, brandCategory.get("Memory Team").intValue());
         assertEquals(15, brandCategory.get("Storage Western Digital").intValue());
         assertEquals(80, brandCategory.get("Monitor Asus").intValue());
-
 
 
         assertEquals(55, brandCategory.get("GPU NVIDIA").intValue());

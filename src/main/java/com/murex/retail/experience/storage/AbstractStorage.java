@@ -1,10 +1,8 @@
 package com.murex.retail.experience.storage;
 
 import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
-import org.hibernate.annotations.CollectionId;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
+
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass

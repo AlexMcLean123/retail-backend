@@ -20,7 +20,7 @@ public abstract class AbstractComputerComponent implements ComputerComponent {
     @Column(name = "QUANTITY")
     public int quantity;
 
-    public final String TAB = "\t|\t";
+    public static final String TAB = "\t|\t";
 
     public AbstractComputerComponent(String id, String category, String name, String brand, int price, int quantity) {
         this.id = id;

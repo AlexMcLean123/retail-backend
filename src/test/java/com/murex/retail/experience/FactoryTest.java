@@ -1,15 +1,15 @@
 package com.murex.retail.experience;
 
-import com.murex.retail.experience.computercomponent.AbstractComputerComponent;
+
 import com.murex.retail.experience.computercomponent.ComputerComponent;
 import com.murex.retail.experience.computercomponent.ComputerComponentFactory;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class FactoryTest {
     @Test
-    void testFactory() {
+    public void testFactory() {
         String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
         ComputerComponent monitor = ComputerComponentFactory.newComponent(monitorDetails);
         assertNotEquals(null, monitor);
@@ -46,11 +46,12 @@ public class FactoryTest {
         assertNotNull(memory);
         assertEquals("IDMemory", memory.getId());
 
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-            String[] ExceptionDetails = {"IDMemory", "Exception", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
-            ComputerComponent illegalArgument = ComputerComponentFactory.newComponent(ExceptionDetails);
-        });
-        assertEquals("Category not matched: Exception", exception.getMessage());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testException() throws IllegalArgumentException {
+        String[] ExceptionDetails = {"IDMemory", "Exception", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
+        ComputerComponent illegalArgument = ComputerComponentFactory.newComponent(ExceptionDetails);
     }
 
 }

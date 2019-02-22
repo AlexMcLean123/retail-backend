@@ -2,24 +2,24 @@ package com.murex.retail.experience;
 
 import com.murex.retail.experience.computercomponent.ComputerComponent;
 import com.murex.retail.experience.computercomponent.ComputerComponentFactory;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-
+import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class ReportTest {
+
+public class ReportTest {
 
     private static Report populatedList;
     private static Report emptyList = new Report(Collections.emptyList());
     private static List<ComputerComponent> comp = new ArrayList<>();
 
 
-    @BeforeAll
-    static void setUpComponentList() throws SQLException {
+    @BeforeClass
+    public static void setUpComponentList() throws SQLException {
 
 
         String[] monitorDetails = {"IDMonitor", "Monitor", "name", "brand", "product", "cores", "processor", "graphic", "dimension", "resolution", "color", "interface", "size", "100", "100"};
@@ -44,7 +44,7 @@ class ReportTest {
     public void test_given_empty_list_then_average_price_of_component_is_zero() {
         double v = emptyList.getAveragePrice();
 
-        assertEquals(0.0, v);
+        assertEquals(0.0, v, 0.0);
     }
 
     @Test
@@ -89,13 +89,13 @@ class ReportTest {
     @Test
     public void test_given_components_then_calculate_the_average_price() {
         double d = populatedList.getAveragePrice();
-        assertEquals(118.0, d);
+        assertEquals(118.0, d, 0.0);
     }
 
     @Test
     public void test_given_cpu_components_then_calculate_the_average_price() {
         double d = populatedList.getAveragePriceOfCPU();
-        assertEquals(100.0, d);
+        assertEquals(100.0, d,0.0);
     }
 
     @Test
